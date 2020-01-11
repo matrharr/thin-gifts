@@ -1,0 +1,25 @@
+<div class="card-list">
+  <h1>Cards</h1>
+  <mat-grid-list cols="2" rowHeight="200px">
+      <mat-grid-tile [style.background]="'lightgreen'">
+        <a [routerLink]="['/add-message']">
+          <mat-icon color="primary">menu_book</mat-icon>
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile [style.background]="'lightblue'">
+        <a [routerLink]="['/add-message']">
+          <mat-icon color="accent">menu_book</mat-icon>
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile [style.background]="'lightpink'">
+        <a [routerLink]="['/add-message']">
+          <mat-icon color="warn">menu_book</mat-icon>
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile [style.background]="'#DDBDF1'">
+        <a [routerLink]="['/add-message']">
+          <mat-icon color="primary">menu_book</mat-icon>
+        </a>
+      </mat-grid-tile>
+  </mat-grid-list>
+</div>
