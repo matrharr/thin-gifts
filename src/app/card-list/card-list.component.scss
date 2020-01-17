@@ -1,7 +1,14 @@
-mat-icon {
-    font-size: 7em;
-}
+// mat-icon {
+//     font-size: 7em;
+// }
 
-mat-grid-list {
-    width: 80%;
-}
+.mat-grid-tile .mat-figure {
+    justify-content: flex-start !important ;
+    align-items: flex-start !important;
+ }
+
+ .card-select:hover {
+    // background-color: red;
+    border: .5px solid grey;
+    box-shadow:20px 20px 10px grey;
+ }

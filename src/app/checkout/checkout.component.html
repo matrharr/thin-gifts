@@ -1,4 +1,43 @@
 <h1>Checkout</h1>
+
+<div>
+  <h2>Add payment</h2>
+  <form>
+    <mat-label>Card Type</mat-label>
+    <mat-select>
+      <mat-option [value]="'Visa'">Visa</mat-option>
+    </mat-select>
+    <mat-form-field>
+      <input matInput placeholder="Name on Card">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Card Number">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="CVV">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Expiration Date">
+    </mat-form-field>
+  </form>
+</div>
+
+<div>
+  <div class="outer_card">
+    <div class="user_card_wrapper">
+      <div class="user_card">
+        <div class="user_card_left">
+        </div>
+        <div class="user_card_right">
+          <p>My message to you is here</p>
+        </div>
+      </div>
+    </div>
+    <mat-icon color="primary">arrow_back</mat-icon>
+    <mat-icon color="primary">arrow_forward</mat-icon>
+  </div>
+</div>
+
 <button mat-stroked-button color="primary">
-    <a [routerLink]="['/confirmation']">Continue</a>
-  </button>
+  <a [routerLink]="['/confirmation']">Confirm and Pay</a>
+</button>

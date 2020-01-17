@@ -1,0 +1,34 @@
+.outer_card {
+    text-align: center;
+}
+
+textarea {
+    width: 493px;
+    height: 595px;
+}
+
+.message {
+    width: 100%;
+}
+
+.user_card_wrapper {
+    text-align: center;
+}
+
+.user_card {
+    border: 5px solid black;
+    width: 70%;
+    height: 600px;
+    display: inline-block;
+}
+
+.user_card_left {
+    float: left;
+    border-right: 5px solid black;
+    height: 100%;
+    width: 50%;
+}
+
+.user_card_right {
+    float: right;
+}

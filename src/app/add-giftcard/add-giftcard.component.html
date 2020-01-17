@@ -1,4 +1,35 @@
 <h1>Add giftcard</h1>
+<div class="card-list">
+  <h1>Giftcards</h1>
+  <mat-grid-list cols="2" rowHeight="200px">
+      <mat-grid-tile [style.background]="'lightgreen'">
+        <a [routerLink]="['/checkout']">
+          <mat-icon color="primary">card_giftcard</mat-icon>
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile [style.background]="'lightblue'">
+        <a [routerLink]="['/checkout']">
+          <mat-icon color="accent">card_giftcard</mat-icon>
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile [style.background]="'lightpink'">
+        <a [routerLink]="['/checkout']">
+          <mat-icon color="warn">card_giftcard</mat-icon>
+        </a>
+      </mat-grid-tile>
+      <mat-grid-tile [style.background]="'#DDBDF1'">
+        <a [routerLink]="['/checkout']">
+          <mat-icon color="primary">card_giftcard</mat-icon>
+        </a>
+      </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div>
+  <label>Add value</label>
+  <input placeholder="$10"/>
+</div>
+
 <button mat-stroked-button color="primary">
   <a [routerLink]="['/checkout']">Continue</a>
 </button>
