@@ -1,19 +1,11 @@
-.outer_card {
-    text-align: center;
-}
-
-textarea {
-    width: 493px;
+.user_card textarea {
+    width: 436px;
     height: 595px;
 }
 
-.message {
-    width: 100%;
-}
-
-.user_card_wrapper {
-    text-align: center;
-}
+// .user_card_wrapper {
+//     text-align: center;
+// }
 
 .user_card {
     border: 5px solid black;
@@ -29,6 +21,21 @@ textarea {
     width: 50%;
 }
 
-.user_card_right {
-    float: right;
+// .user_card_right {
+//     float: right;
+// }
+
+.selected {
+    color: red;
+}
+
+.card-cover {
+    width: 150%;
+    height: 600px;
+}
+
+.envelope {
+    border: 5px solid black;
+    height: 500px;
+    width: 80%;
 }
