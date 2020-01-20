@@ -3,3 +3,17 @@
        Every toolbar row uses a flexbox row layout. */
     flex: 1 1 auto;
   }
+
+.navbar {
+   background-color: #036bfc;
+   
+   .navbar_text {
+      color: white;
+   }
+}
+
+.dropdown_menu {
+   width: 70%;
+   height: 300px;
+   background-color: green;
+}

@@ -1,5 +1,4 @@
 <mat-toolbar color="primary">
-  <span>Thin Gifts</span>
 
   <span class="example-fill-remaining-space"></span>
   <h2><a [routerLink]="['/home']">Home</a></h2>
@@ -9,5 +8,38 @@
   <h2><a [routerLink]="['/add-giftcard']">add giftcard</a></h2>
   <h2><a [routerLink]="['/checkout']">checkout</a></h2>
 </mat-toolbar>
+
+<mat-grid-list cols="10" rowHeight="80px" class="navbar">
+  <mat-grid-tile [colspan]="1">
+    <h1 class="navbar_text">Thin Gifts</h1>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1">
+    <div class="dropdown">
+      <span class="navbar_text" (mouseenter)="expandShop()">Shop</span>
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1">
+    <div class="dropdown">
+      <span class="navbar_text" (mouseenter)="expandExplore()">Explore</span>
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="7"></mat-grid-tile>
+  <mat-grid-tile 
+    *ngIf="shopExpanded" 
+    class="dropdown_menu"
+    [colspan]="5" 
+    [style.backgroundColor]="'green'"
+  >
+  </mat-grid-tile>
+  <mat-grid-tile 
+    *ngIf="exploreExpanded" 
+    class="dropdown_menu"
+    [colspan]="5" 
+    [style.backgroundColor]="'green'"
+  >
+  </mat-grid-tile>
+</mat-grid-list>
 
 <router-outlet></router-outlet>

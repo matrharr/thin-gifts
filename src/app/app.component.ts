@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'thin-gifts';
+  shopExpanded = false;
+  exploreExpanded = false;
+
+  expandShop() {
+    this.shopExpanded = !this.shopExpanded;
+  }
+
+  expandExplore() {
+    this.exploreExpanded = !this.exploreExpanded;
+  }
 }
