@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
 
   <span class="example-fill-remaining-space"></span>
   <h2><a [routerLink]="['/home']">Home</a></h2>
@@ -40,6 +40,23 @@
     [style.backgroundColor]="'green'"
   >
   </mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->
+
+<nav class="nav-area">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li class="drop-down"><a href="#">s</a>
+      <ul>
+        <li><a href="">Celebate</a></li>
+        <li><a href="">More stuff</a></li>
+        <li><a href="">More stuff</a></li>
+      </ul>
+    </li>
+    <li><a href="#">More</a></li>
+    <li><a href="#">More</a></li>
+  </ul>
+</nav>
+
 
 <router-outlet></router-outlet>
