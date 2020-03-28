@@ -1,45 +1,46 @@
-<h1>Add address</h1>
-<h2>Return Address</h2>
-<form>
-  <mat-form-field>
-    <input matInput placeholder="Address line 1">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Address line 2">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="City">
-  </mat-form-field>
-  <mat-label>State</mat-label>
-  <mat-select>
-    <mat-option [value]="'CT'">CT</mat-option>
-  </mat-select>
-  <mat-form-field>
-    <input matInput placeholder="Zip Code">
-  </mat-form-field>
-</form>
-<h2>Recipient Address</h2>
-<form>
-  <mat-form-field>
-    <input matInput placeholder="Name">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Address line 1">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Address line 2">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="City">
-  </mat-form-field>
-  <mat-label>State</mat-label>
-  <mat-select>
-    <mat-option [value]="'CT'">CT</mat-option>
-  </mat-select>
-  <mat-form-field>
-    <input matInput placeholder="Zip Code">
-  </mat-form-field>
-</form>
-<button mat-stroked-button color="primary">
-  <a [routerLink]="['/add-giftcard']">Continue</a>
-</button>
+<div class="add__address">
+  <h1>Add address</h1>
+  <mat-grid-list cols="18" rowHeight="48px">
+    <mat-grid-tile [colspan]="13" [rowspan]="12">
+      <div class="outer__envelope">
+        <mat-grid-list class="envelope" cols="7" rowHeight="40px">
+          
+          <mat-grid-tile [colspan]="3" [rowspan]="1">
+            <input class="address__line" placeholder="Name">
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
+          
+          <mat-grid-tile [colspan]="3" [rowspan]="1">
+            <input class="address__line" placeholder="Return Address">
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
+          
+          <mat-grid-tile [colspan]="3" [rowspan]="1">
+            <input class="address__line" placeholder="Return Address">
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="3" [rowspan]="1"></mat-grid-tile>
+          
+          <mat-grid-tile [colspan]="7" [rowspan]="4"></mat-grid-tile>
+          
+          <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
+          <mat-grid-tile [colspan]="3" [rowspan]="1">
+            <input class="address__line" placeholder="Send To">
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+          <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
+          <mat-grid-tile [colspan]="3" [rowspan]="1">
+            <input class="address__line" placeholder="Address">
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+          <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
+          <mat-grid-tile [colspan]="3" [rowspan]="1">
+            <input class="address__line" placeholder="Address">
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <button mat-stroked-button color="primary">
+    <a [routerLink]="['/add-giftcard']">Continue</a>
+  </button>
+</div>

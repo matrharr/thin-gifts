@@ -22,6 +22,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ExploreModalComponent } from './explore-modal/explore-modal.component';
 
 
 
@@ -34,7 +36,8 @@ import {MatMenuModule} from '@angular/material/menu';
     AddAddressComponent,
     AddGiftcardComponent,
     CheckoutComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    ExploreModalComponent
   ],
   imports: [
     BrowserModule,
@@ -49,9 +52,11 @@ import {MatMenuModule} from '@angular/material/menu';
     MatInputModule,
     MatListModule,
     MatCheckboxModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ExploreModalComponent]
 })
 export class AppModule { }

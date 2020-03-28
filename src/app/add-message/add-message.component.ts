@@ -30,6 +30,20 @@ export class AddMessageComponent implements OnInit {
     }
   }
 
+  changeSlide(slide) {
+    switch (slide) {
+      case 'cover':
+        this.current = 0;
+        break;
+      case 'card':
+        this.current = 1;
+        break;
+      case 'addressing':
+        this.current = 2;
+        break;
+    }
+  }
+
   isCover() {
     return this.slides[this.current] === 'cover';
   }
