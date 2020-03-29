@@ -7,13 +7,13 @@
     <ul class="nav__links">
       <li
         class="menu__button" 
-        (mouseenter)="toggleMenu('shop')" 
+        (click)="toggleMenu('shop')" 
         >
         Shop
       </li>
       <li 
         class="menu__button" 
-        (mouseenter)="toggleMenu('explore')" 
+        (click)="toggleMenu('explore')" 
         >
         Explore
       </li>
@@ -36,7 +36,6 @@
 <div 
   class="menu__dropdown" 
   *ngIf="exploreExpanded" 
-  (mouseleave)="toggleMenu('explore')"
   >
   <h1>explore coming soon</h1>
 </div>
@@ -44,7 +43,6 @@
 <div 
   class="menu__dropdown" 
   *ngIf="shopExpanded"
-  (mouseleave)="toggleMenu('shop')"
   >
   <h1>shop coming soon</h1>
 </div>

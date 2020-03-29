@@ -11,7 +11,7 @@ header {
    font-size: 26px;
 }
 
-li {
+li, .lgn {
    font-weight: 500;
    font-size: 16px;
    color: #edf0f1;
@@ -66,4 +66,8 @@ header {
 .trigger__dropdown:hover .dropdown__list {
    display: block;
    background-color: white;
+}
+
+.menu__button {
+   cursor: pointer;
 }
