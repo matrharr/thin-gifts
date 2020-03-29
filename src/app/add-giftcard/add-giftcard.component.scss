@@ -1,7 +1,4 @@
-mat-icon {
-    font-size: 7em;
-}
-
-mat-grid-list {
-    width: 80%;
-}
+.card__list .mat-grid-tile .mat-figure {
+    justify-content: flex-start !important ;
+    align-items: flex-start !important;
+ }

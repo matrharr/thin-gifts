@@ -26,6 +26,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ExploreModalComponent } from './explore-modal/explore-modal.component';
 import { CardSliderComponent } from './card-slider/card-slider.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { ProductListComponent } from './product-list/product-list.component';
 
 
 
@@ -41,7 +42,8 @@ import {MatRadioModule} from '@angular/material/radio';
     CheckoutComponent,
     ConfirmationComponent,
     ExploreModalComponent,
-    CardSliderComponent
+    CardSliderComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
