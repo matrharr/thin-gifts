@@ -37,26 +37,65 @@
   </mat-grid-tile>
   <mat-grid-tile [colspan]="1" *ngIf="readOnly"></mat-grid-tile>
   <mat-grid-tile
-    [colspan]="2"
+    [colspan]="3"
     [rowspan]="12"
-    [style.backgroundColor]="'lightgreen'"
     *ngIf="!readOnly"
   >
-    sidebar
+    <mat-grid-list cols="3" rowHeight="70px" class="sidebar__tools">
+      <mat-grid-tile [colspan]="3">
+        <mat-form-field class="tool__control text__font__control">
+          <mat-label>Text Font</mat-label>
+          <select matNativeControl required>
+            <option *ngFor="let opt of fontOptions" [value]="opt.value">
+              {{opt.text}}
+            </option>
+          </select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="3">
+        <mat-form-field class="tool__control text__size__control">
+          <mat-label>Text Size</mat-label>
+          <select matNativeControl required>
+            <option *ngFor="let opt of sizeOptions" [value]="opt.value">
+              {{opt.text}}
+            </option>
+          </select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="3">
+        <mat-form-field class="tool__control text__color__control">
+          <mat-label>Text Color</mat-label>
+          <select matNativeControl required>
+            <option *ngFor="let opt of colorOptions" [value]="opt.value">
+              {{opt.text}}
+            </option>
+        </select>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
   </mat-grid-tile>
   <mat-grid-tile
-    [colspan]="1"
+    [colspan]="3"
     [rowspan]="12"
     *ngIf="readOnly"
   ></mat-grid-tile>
-  <mat-grid-tile [colspan]="2" [rowspan]="12"></mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="12" *ngIf="!readOnly"></mat-grid-tile>
   <div *ngIf="isCard()">
     <mat-grid-tile [colspan]="6" [rowspan]="12">
       <div class="card__inside"></div>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="6" [rowspan]="12">
       <div class="card__inside">
-        <textarea class="card__text" placeholder="Write your message here..."></textarea>
+        <textarea 
+          class="card__text" 
+          placeholder="Write your message here..."
+        >Dear ,
+                                      
+        
+        
+        
+        Best wishes,
+      </textarea>
       </div>
     </mat-grid-tile>
   </div>

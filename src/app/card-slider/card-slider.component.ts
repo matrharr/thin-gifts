@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-card-slider',
@@ -11,12 +11,47 @@ export class CardSliderComponent implements OnInit {
     'card',
     'addressing'
   ];
+  
+  fontOptions = [
+    { value: '', text: '' },
+    { value: 'arial', text: 'Arial' },
+    { value: 'roboto', text: 'Roboto' },
+    { value: 'verdana', text: 'Verdana' },
+  ];
+
+  sizeOptions = [
+    { value: '', text: '' },
+    { value: 16, text: '16' },
+    { value: 32, text: '32' },
+    { value: 64, text: '64' },
+  ];
+
+  colorOptions = [
+    { value: '', text: '' },
+    { value: 'blue', text: 'Blue' },
+    { value: 'red', text: 'Red' },
+    { value: 'green', text: 'Green' },
+  ];
+
   current = 1;
   @Input() readOnly = false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    console.log(event);
+
+    if (event.keyCode === 39) {
+      this.moveRight();
+    }
+
+    if (event.keyCode === 37) {
+      this.moveLeft();
+    }
   }
 
   moveLeft() {
