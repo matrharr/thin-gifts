@@ -33,12 +33,14 @@ export class CardSliderComponent implements OnInit {
     { value: 'green', text: 'Green' },
   ];
 
-  current = 1;
+  current = 0;
+  cardSliderColumns: number;
   @Input() readOnly = false;
 
   constructor() { }
 
   ngOnInit() {
+    this.cardSliderColumns = (window.innerWidth <= 400) ? 9 : 18;
   }
 
   @HostListener('window:keyup', ['$event'])

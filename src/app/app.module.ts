@@ -27,6 +27,8 @@ import { ExploreModalComponent } from './explore-modal/explore-modal.component';
 import { CardSliderComponent } from './card-slider/card-slider.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { ProductListComponent } from './product-list/product-list.component';
+import { PaymentComponent } from './payment/payment.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -43,7 +45,8 @@ import { ProductListComponent } from './product-list/product-list.component';
     ConfirmationComponent,
     ExploreModalComponent,
     CardSliderComponent,
-    ProductListComponent
+    ProductListComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { ProductListComponent } from './product-list/product-list.component';
     MatCheckboxModule,
     MatMenuModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

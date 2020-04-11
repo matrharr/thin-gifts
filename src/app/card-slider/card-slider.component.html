@@ -1,4 +1,4 @@
-<mat-grid-list cols="18" rowHeight="48px">
+<mat-grid-list [cols]="18" rowHeight="3vw">
   <mat-grid-tile
     [colspan]="4"
   >
@@ -41,7 +41,7 @@
     [rowspan]="12"
     *ngIf="!readOnly"
   >
-    <mat-grid-list cols="3" rowHeight="70px" class="sidebar__tools">
+    <mat-grid-list cols="3" rowHeight="5vw" class="sidebar__tools">
       <mat-grid-tile [colspan]="3">
         <mat-form-field class="tool__control text__font__control">
           <mat-label>Text Font</mat-label>
@@ -101,16 +101,18 @@
   </div>
   <div *ngIf="isCover()">
     <mat-grid-tile [colspan]="12" [rowspan]="12">
-      <img class="card-cover" src="https://image.shutterstock.com/image-vector/creative-minimalistic-thank-you-card-260nw-319787525.jpg" />
+      <div class="card-cover-wrapper">
+        <img class="card-cover" src="https://image.shutterstock.com/image-vector/creative-minimalistic-thank-you-card-260nw-319787525.jpg" />
+      </div>
     </mat-grid-tile>
   </div>
   <div *ngIf="isAddressing()">
     <mat-grid-tile [colspan]="13" [rowspan]="12">
       <div class="outer__envelope">
-        <mat-grid-list class="envelope" cols="7" rowHeight="40px">
+        <mat-grid-list class="envelope" cols="7" rowHeight="4vw">
           
           <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input class="address__line" placeholder="Name">
+            <input class="address__line" placeholder="Sender">
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
           
@@ -124,21 +126,21 @@
           </mat-grid-tile>
           <mat-grid-tile [colspan]="3" [rowspan]="1"></mat-grid-tile>
           
-          <mat-grid-tile [colspan]="7" [rowspan]="4"></mat-grid-tile>
+          <mat-grid-tile [colspan]="7" [rowspan]="2"></mat-grid-tile>
           
           <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
           <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input class="address__line" placeholder="Send To">
+            <input class="address__line" placeholder="Recipient">
           </mat-grid-tile>
           <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
           <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input class="address__line" placeholder="Address">
+            <input class="address__line" placeholder="Recipient Address">
           </mat-grid-tile>
           <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
           <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input class="address__line" placeholder="Address">
+            <input class="address__line" placeholder="Recipient Address">
           </mat-grid-tile>
         </mat-grid-list>
       </div>

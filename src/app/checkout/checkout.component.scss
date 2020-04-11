@@ -1,6 +1,6 @@
-// .mat-grid-tile {
-//     border: 1px solid red;
-// }
+.mat-grid-tile {
+    border: 1px solid red;
+}
 
 .card__slider {
     width: 100%;
@@ -19,4 +19,9 @@
 .payment__exp__date {
     width: 30%;
     margin: 20px;
+}
+
+.payment {
+    width: 75vw;
+    text-align: center;
 }
