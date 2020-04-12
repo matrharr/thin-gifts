@@ -33,7 +33,7 @@ export class CardSliderComponent implements OnInit {
     { value: 'green', text: 'Green' },
   ];
 
-  current = 0;
+  current = 1;
   cardSliderColumns: number;
   @Input() readOnly = false;
 

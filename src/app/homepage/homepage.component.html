@@ -2,19 +2,19 @@
 <div class="intro">
   <h1 class="name"> Send gifts from home.</h1>
   <h3 class="description"> Hundreds of options. No pants needed. </h3>
-  <a class="shop" href="#">	Shop Now</a>
+  <a class="shop" [routerLink]="['/card-list']">	Shop Now</a>
 </div>
 
 <!-- step by step instruction -->
 <mat-grid-list [cols]="5" rowHeight="30vw">
-  <mat-grid-tile class="instruction" [colspan]="2">
+  <mat-grid-tile [colspan]="2">
     <div class="instruction__modern_gift">
       <h3>
         Built for 
         <span class="bold__text">MODERN</span> 
         <span class="bold__text">GIFT GIVING</span>
       </h3>
-      <button mat-flat-button>SHOP NOW</button>
+      <button mat-flat-button [routerLink]="['/card-list']">SHOP NOW</button>
     </div>
   </mat-grid-tile>
   <mat-grid-tile class="instruction" [colspan]="1">
@@ -71,7 +71,7 @@
         <span class="bold__text">FAVORITES</span>
       </h3>
       <span>
-        <a href="#">See more >></a>
+        <a [routerLink]="['/card-list']">See more >></a>
       </span>
     </div>
   </mat-grid-tile>

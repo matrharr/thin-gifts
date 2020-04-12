@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { async } from '@angular/core/testing';
 
 declare var paypal;
 

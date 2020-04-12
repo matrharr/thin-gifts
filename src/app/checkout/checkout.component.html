@@ -1,13 +1,15 @@
-<mat-grid-list cols="21" rowHeight="80px">
-  <mat-grid-tile [colspan]="7"></mat-grid-tile>
-  <mat-grid-tile [colspan]="7"><h1>Checkout</h1></mat-grid-tile>
-  <mat-grid-tile [colspan]="7"></mat-grid-tile>
-
-  <mat-grid-tile [colspan]="21" [rowspan]="9">
-    <app-card-slider 
-      class="card__slider"
-      [readOnly]="true"
-    ></app-card-slider>
-  </mat-grid-tile>
-</mat-grid-list>
-<app-payment class="payment"></app-payment>
+<div class="checkout">
+  <mat-grid-list cols="21" rowHeight="80px">
+    <mat-grid-tile [colspan]="7"></mat-grid-tile>
+    <mat-grid-tile [colspan]="7"><h1>Checkout</h1></mat-grid-tile>
+    <mat-grid-tile [colspan]="7"></mat-grid-tile>
+  
+    <mat-grid-tile [colspan]="21" [rowspan]="9">
+      <app-card-slider
+        class="card__slider"
+        [readOnly]="true"
+      ></app-card-slider>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <app-payment class="payment"></app-payment>
+</div>
