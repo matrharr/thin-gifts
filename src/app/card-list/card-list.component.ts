@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ApiService } from '../services/api.service';
+
 
 export interface Tile {
   cols: number;
@@ -31,9 +33,11 @@ export class CardListComponent implements OnInit {
     'Thank You',
     'Valentines'
   ];
-  constructor() { }
+  constructor(private ApiService: ApiService) { }
 
   ngOnInit() {
+    this.ApiService.getCards()
+      .subscribe((data) => console.log(data));
   }
 
 }
