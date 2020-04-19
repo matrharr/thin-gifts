@@ -1,7 +1,8 @@
 <div class="card-list">
   <app-product-list
-    [filterOptions]=themes
-    [products]=tiles
+    [filterOptions]=categories
+    [products]=cards
     [productName]="'Card'"
+    (selectProduct)="addCardToCart($event)"
   ></app-product-list>
 </div>

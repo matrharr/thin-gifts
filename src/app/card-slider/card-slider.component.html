@@ -30,7 +30,7 @@
   <mat-grid-tile
     [colspan]="4"
   >
-    <button mat-stroked-button color="primary" *ngIf="!readOnly">Done</button>
+    <button mat-stroked-button color="primary" *ngIf="!readOnly" (click)="saveMessage()">Done</button>
     <button mat-stroked-button color="primary" *ngIf="readOnly">
       <a [routerLink]="['/add-message']">Edit</a>
     </button>
@@ -87,6 +87,7 @@
     <mat-grid-tile [colspan]="6" [rowspan]="12">
       <div class="card__inside">
         <textarea 
+          #message
           class="card__text" 
           placeholder="Write your message here..."
         >Dear ,

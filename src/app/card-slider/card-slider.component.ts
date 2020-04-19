@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { Component, OnInit, Input, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-card-slider',
@@ -6,6 +7,7 @@ import { Component, OnInit, Input, HostListener } from '@angular/core';
   styleUrls: ['./card-slider.component.scss']
 })
 export class CardSliderComponent implements OnInit {
+  @ViewChild("message") message: ElementRef
   slides = [
     'cover',
     'card',
@@ -37,7 +39,7 @@ export class CardSliderComponent implements OnInit {
   cardSliderColumns: number;
   @Input() readOnly = false;
 
-  constructor() { }
+  constructor(private ApiService: ApiService) { }
 
   ngOnInit() {
     this.cardSliderColumns = (window.innerWidth <= 400) ? 9 : 18;
@@ -92,6 +94,15 @@ export class CardSliderComponent implements OnInit {
 
   isAddressing() {
     return this.slides[this.current] === 'addressing';
+  }
+
+  saveMessage(e) {
+    // get text from dom
+    const message = {message:this.message.nativeElement.value}
+    this.ApiService.addToCart(message)
+      .subscribe((data:any) => {
+        console.log(data);
+      })
   }
 
 }

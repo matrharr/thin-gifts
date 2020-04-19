@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 export interface Tile {
   cols: number;
@@ -16,9 +16,15 @@ export class ProductListComponent implements OnInit {
   @Input() products: any;
   @Input() productName: string;
 
+  @Output() selectProduct = new EventEmitter()
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSelectProduct(productId) {
+    this.selectProduct.emit(productId)
   }
 
 }

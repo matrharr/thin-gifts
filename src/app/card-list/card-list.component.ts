@@ -1,13 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ApiService } from '../services/api.service';
 
-
-export interface Tile {
-  cols: number;
-  rows: number;
-  text: string;
-}
-
 @Component({
   selector: 'app-card-list',
   templateUrl: './card-list.component.html',
@@ -15,29 +8,25 @@ export interface Tile {
   encapsulation: ViewEncapsulation.None
 })
 export class CardListComponent implements OnInit {
-  tiles: Tile[] = [
-    {text: 'Happy Thanksgiving', cols: 2, rows: 1 },
-    {text: 'Merry Christmas', cols: 2, rows: 1},
-    {text: 'Valentines', cols: 2, rows: 1},
-    {text: 'Thank You', cols: 2, rows: 1},
-    {text: 'Happy Birthday', cols: 2, rows: 1},
-    {text: 'Being there', cols: 2, rows: 1},
-    {text: 'Wedding', cols: 2, rows: 1},
-    {text: 'Bar Mitzvah', cols: 2, rows: 1}
-  ];
-
-  themes = [
-    'Christmas',
-    'Thanksgiving',
-    'Birthday',
-    'Thank You',
-    'Valentines'
-  ];
+  cards: any;
+  categories: string[];
   constructor(private ApiService: ApiService) { }
 
   ngOnInit() {
-    this.ApiService.getCards()
-      .subscribe((data) => console.log(data));
+    this.ApiService.getProducts('CA')
+      .subscribe((data:any) => {
+        console.log(data);
+        this.cards = data.cards;
+        this.categories = data.tags.map(t => t.name);
+      });
   }
+
+  addCardToCart(cardId) {
+    this.ApiService.addToCart(cardId).
+      subscribe((data:any) => {
+        console.log(data)
+      })
+  }
+
 
 }

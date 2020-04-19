@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AppComponent {
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer){
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private ApiService: ApiService){
     iconRegistry.addSvgIcon(
       'card',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/christmas-card.svg')
@@ -22,6 +23,13 @@ export class AppComponent {
       'keyboard',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/keyboard.svg')
     );
+  }
+
+  onRouteChange() {
+    this.ApiService.getCart()
+      .subscribe((data:any) => {
+        console.log(data)
+      });
   }
 
 }

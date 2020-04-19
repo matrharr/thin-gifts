@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service';
 
-export interface Product {
-  cols: number;
-  rows: number;
-  text: string;
-}
 
 @Component({
   selector: 'app-add-giftcard',
@@ -12,27 +8,17 @@ export interface Product {
   styleUrls: ['./add-giftcard.component.scss']
 })
 export class AddGiftcardComponent implements OnInit {
-  products: Product[] = [
-    {text: 'Amazon', cols: 2, rows: 1 },
-    {text: 'Wal-Mart', cols: 2, rows: 1},
-    {text: 'Applebees', cols: 2, rows: 1},
-    {text: 'Best Buy', cols: 2, rows: 1},
-    {text: 'iTunes', cols: 2, rows: 1},
-    {text: 'Chick-fil-a', cols: 2, rows: 1},
-    {text: 'Whole Foods', cols: 2, rows: 1},
-    {text: 'Gamestop', cols: 2, rows: 1}
-  ];
-
-  themes = [
-    'Restaurants',
-    'Online',
-    'Retail',
-    'Music',
-    'Grocery'
-  ];
-  constructor() { }
+  gifts: any;
+  categories: string[]
+  constructor(private ApiService: ApiService) { }
 
   ngOnInit() {
+    this.ApiService.getProducts('GI')
+      .subscribe((data:any) => {
+        console.log(data);
+        this.gifts = data.cards;
+        this.categories = data.tags.map(t => t.name);
+      });
   }
 
 }
