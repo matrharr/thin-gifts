@@ -6,37 +6,58 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ApiService {
   headers = new HttpHeaders({
-    'Access-Control-Allow-Origin': 'http://localhost:8000',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Accept': 'application/json'
   });
 
   requestOptions: any
 
   constructor(private http:HttpClient) {
     this.requestOptions = {
-      // headers: this.headers,
+      headers: this.headers,
       withCredentials: true,
     }
   }
 
   getProducts(type) {
     return this.http.get(
-      `http://localhost:8000/products/get_products/?type=${type}`, 
+      `http://127.0.0.1:8000/products/get_products/?type=${type}`, 
       this.requestOptions
     );
   }
 
   addToCart(values) {
     return this.http.post(
-      `http://localhost:8000/shopping_cart/update_cart/`,
+      `http://127.0.0.1:8000/shopping_cart_products/create_or_update_cart/`,
       values,
       this.requestOptions
     )
   }
 
-  getCart() {
+  getCart(cartId) {
     return this.http.get(
-      `http://localhost:8000/shopping_cart/get_cart_quantity/`,
+      `http://127.0.0.1:8000/shopping_cart/${cartId}/`,
+      this.requestOptions
+    );
+  }
+
+  getCartQuantity() {
+    return this.http.get(
+      `http://127.0.0.1:8000/shopping_cart/get_cart_quantity/`,
+      this.requestOptions
+    );
+  }
+
+  updateCartProduct(values, cartProductId) {
+    return this.http.patch(
+      `http://127.0.0.1:8000/shopping_cart_products/${cartProductId}/`,
+      values,
+      this.requestOptions
+    )
+  }
+
+  getCartProduct(cartProductId) {
+    return this.http.get(
+      `http://127.0.0.1:8000/shopping_cart_products/${cartProductId}/`, 
       this.requestOptions
     );
   }

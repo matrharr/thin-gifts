@@ -113,17 +113,17 @@
         <mat-grid-list class="envelope" cols="7" rowHeight="4vw">
           
           <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input class="address__line" placeholder="Sender">
+            <input #ret_street class="address__line" placeholder="Sender">
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
           
           <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input class="address__line" placeholder="Return Address">
+            <input #ret_city class="address__line" placeholder="Return Address">
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
           
           <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input class="address__line" placeholder="Return Address">
+            <input #ret_state class="address__line" placeholder="Return Address">
           </mat-grid-tile>
           <mat-grid-tile [colspan]="3" [rowspan]="1"></mat-grid-tile>
           
@@ -131,17 +131,17 @@
           
           <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
           <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input class="address__line" placeholder="Recipient">
+            <input #rec_street class="address__line" placeholder="Recipient">
           </mat-grid-tile>
           <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
           <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input class="address__line" placeholder="Recipient Address">
+            <input #rec_city class="address__line" placeholder="Recipient Address">
           </mat-grid-tile>
           <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
           <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input class="address__line" placeholder="Recipient Address">
+            <input #rec_state class="address__line" placeholder="Recipient Address">
           </mat-grid-tile>
         </mat-grid-list>
       </div>

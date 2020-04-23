@@ -1,5 +1,9 @@
 import { Component, OnInit, Input, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import {map} from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-card-slider',
@@ -37,12 +41,27 @@ export class CardSliderComponent implements OnInit {
 
   current = 1;
   cardSliderColumns: number;
+  cartProductId: string;
   @Input() readOnly = false;
 
-  constructor(private ApiService: ApiService) { }
+  constructor(
+    private ApiService: ApiService, 
+    private route: ActivatedRoute,
+    private router: Router
+  ) { 
+    this.cartProductId = this.route.snapshot.params.id;
+  }
 
   ngOnInit() {
     this.cardSliderColumns = (window.innerWidth <= 400) ? 9 : 18;
+    // on individual this is fine, but on checkout, will need to sync this with multiple items, can't just pull id from url because that will be cart id not cart prod id
+    this.ApiService.getCartProduct(this.cartProductId)
+      .subscribe((data:any) => {
+        console.log(data)
+        if (data.message) {
+          this.message.nativeElement.value = data.message;
+        }
+      })
   }
 
   @HostListener('window:keyup', ['$event'])
@@ -96,12 +115,40 @@ export class CardSliderComponent implements OnInit {
     return this.slides[this.current] === 'addressing';
   }
 
+  getReturnAddress() {
+    return {
+      name: 'Matt Harris',
+      street: '509 e 85th street',
+      city: 'New York',
+      state: 'NY',
+      code: '10028'
+    }
+  }
+
+  getRecipientAddress() {
+    return {
+      name: 'Jen Fang',
+      street: '360 state street',
+      city: 'New Haven',
+      state: 'CT',
+      code: '06510'
+    }
+  }
+
   saveMessage(e) {
-    // get text from dom
-    const message = {message:this.message.nativeElement.value}
-    this.ApiService.addToCart(message)
+    const message = this.message.nativeElement.value;
+    const returnAddress = this.getReturnAddress();
+    const recipientAddress = this.getRecipientAddress();
+    const reqData = {
+      message: message,
+      return_address: returnAddress,
+      recipient_address: recipientAddress
+    }
+    this.ApiService.updateCartProduct(reqData, this.cartProductId)
       .subscribe((data:any) => {
         console.log(data);
+        debugger
+        this.router.navigate(['/checkout', data.shopping_cart.id])
       })
   }
 

@@ -13,9 +13,9 @@ const routes: Routes = [
   { path: 'home', component: HomepageComponent },
   { path: 'add-address', component: AddAddressComponent },
   { path: 'add-giftcard', component: AddGiftcardComponent },
-  { path: 'add-message', component: AddMessageComponent },
+  { path: 'add-message/:id', component: AddMessageComponent },
   { path: 'card-list', component: CardListComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  { path: 'checkout/:id', component: CheckoutComponent },
   { path: 'confirmation', component: ConfirmationComponent }
 ];
 

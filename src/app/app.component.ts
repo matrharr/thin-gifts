@@ -26,7 +26,7 @@ export class AppComponent {
   }
 
   onRouteChange() {
-    this.ApiService.getCart()
+    this.ApiService.getCartQuantity()
       .subscribe((data:any) => {
         console.log(data)
       });

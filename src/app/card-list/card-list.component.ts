@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-list',
@@ -10,7 +11,7 @@ import { ApiService } from '../services/api.service';
 export class CardListComponent implements OnInit {
   cards: any;
   categories: string[];
-  constructor(private ApiService: ApiService) { }
+  constructor(private ApiService: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.ApiService.getProducts('CA')
@@ -22,9 +23,13 @@ export class CardListComponent implements OnInit {
   }
 
   addCardToCart(cardId) {
-    this.ApiService.addToCart(cardId).
+    const cartData = {
+      product: cardId
+    }
+    this.ApiService.addToCart(cartData).
       subscribe((data:any) => {
         console.log(data)
+        this.router.navigate(['/add-message', data.id])
       })
   }
 
