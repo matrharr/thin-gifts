@@ -18,7 +18,7 @@ export class CardListComponent implements OnInit {
       .subscribe((data:any) => {
         console.log(data);
         this.cards = data.cards;
-        this.categories = data.tags.map(t => t.name);
+        this.categories = data.tags.map(t => t);
       });
   }
 

@@ -62,4 +62,20 @@ export class ApiService {
     );
   }
 
+  getProductsByTag(productType, tagIds) {
+    const queryParams = this.formatMultiQueryParams('tags', tagIds);
+    return this.http.get(
+      `http://127.0.0.1:8000/products/?type=${productType}&${queryParams}`, 
+      this.requestOptions
+    );
+  }
+
+  formatMultiQueryParams(key, values) {
+    let queryParams = '';
+    values.forEach((val) => {
+      queryParams += `${key}=${val}&`
+    });
+    return queryParams;
+  }
+
 }

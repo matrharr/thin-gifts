@@ -32,6 +32,7 @@ export class PaymentComponent implements OnInit {
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
           this.paidFor = true;
+          console.log(data)
         },
         onError: err => {
           console.log(err)

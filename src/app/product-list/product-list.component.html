@@ -9,7 +9,7 @@
       <mat-list role="list">
         <h3 mat-subheader>Theme</h3>
         <mat-list-item *ngFor="let f of filterOptions">
-          <mat-checkbox>{{f}}</mat-checkbox>
+          <mat-checkbox (change)="onFilterChange($event)" value="{{f.id}}">{{f.name}}</mat-checkbox>
         </mat-list-item>
       </mat-list>
     </mat-grid-tile>
