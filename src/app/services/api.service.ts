@@ -70,6 +70,18 @@ export class ApiService {
     );
   }
 
+  captureOrder(orderId, shoppingCartId, email) {
+    return this.http.post(
+      `http://127.0.0.1:8000/execute_payment/`,
+      {
+        order_id: orderId,
+        shopping_cart_id: shoppingCartId,
+        email: email,
+      },
+      this.requestOptions
+    )
+  }
+
   formatMultiQueryParams(key, values) {
     let queryParams = '';
     values.forEach((val) => {

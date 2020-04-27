@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ApiService } from '../services/api.service';
+import { ActivatedRoute } from '@angular/router';
 
 declare var paypal;
 
@@ -9,9 +11,16 @@ declare var paypal;
 })
 export class PaymentComponent implements OnInit {
   @ViewChild('paypal') paypalElement: ElementRef;
+  @ViewChild('email') emailElement: ElementRef;
   paidFor = false;
+  cartId: String;
   
-  constructor() { }
+  constructor(
+    private ApiService: ApiService,
+    private route: ActivatedRoute,
+  ) {
+    this.cartId = this.route.snapshot.params.id;
+  }
 
   ngOnInit() {
     paypal
@@ -30,11 +39,17 @@ export class PaymentComponent implements OnInit {
           });
         },
         onApprove: async (data, actions) => {
-          const order = await actions.order.capture();
-          this.paidFor = true;
-          console.log(data)
+          // const order = await actions.order.capture();
+          const email = this.emailElement.nativeElement.value;
+          this.ApiService.captureOrder(data.orderID, this.cartId, email)
+            .subscribe((data:any) => {
+              this.paidFor = true;
+              console.log(data)
+              // redirect to receipt page
+            })
         },
         onError: err => {
+          // display to user
           console.log(err)
         }
       })
