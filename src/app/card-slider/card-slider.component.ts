@@ -147,8 +147,7 @@ export class CardSliderComponent implements OnInit {
     this.ApiService.updateCartProduct(reqData, this.cartProductId)
       .subscribe((data:any) => {
         console.log(data);
-        debugger
-        this.router.navigate(['/checkout', data.shopping_cart.id])
+        this.router.navigate(['/checkout', data.shopping_cart])
       })
   }
 
