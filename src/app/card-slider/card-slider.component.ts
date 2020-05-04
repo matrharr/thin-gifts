@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import {map} from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -41,16 +39,13 @@ export class CardSliderComponent implements OnInit {
 
   current = 1;
   cardSliderColumns: number;
-  cartProductId: string;
+  @Input() cartProductId: string;
   @Input() readOnly = false;
 
   constructor(
     private ApiService: ApiService, 
-    private route: ActivatedRoute,
     private router: Router
-  ) { 
-    this.cartProductId = this.route.snapshot.params.id;
-  }
+  ) {}
 
   ngOnInit() {
     this.cardSliderColumns = (window.innerWidth <= 400) ? 9 : 18;

@@ -32,7 +32,7 @@
   >
     <button mat-stroked-button color="primary" *ngIf="!readOnly" (click)="saveMessage()">Done</button>
     <button mat-stroked-button color="primary" *ngIf="readOnly">
-      <a [routerLink]="['/add-message']">Edit</a>
+      <a [routerLink]="['/add-message', this.cartProductId]">Edit</a>
     </button>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="1" *ngIf="readOnly"></mat-grid-tile>

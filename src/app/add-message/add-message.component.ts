@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-message.component.scss']
 })
 export class AddMessageComponent implements OnInit {
+  cartProductId: string;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { 
+    this.cartProductId = this.route.snapshot.params.id;
+  }
 
   ngOnInit() {
   }

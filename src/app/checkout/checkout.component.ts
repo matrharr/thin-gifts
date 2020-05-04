@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -7,13 +8,20 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
+  cartId: string;
+  cart: any;
+  shoppingCartProducts: number[];
 
-  constructor(private ApiService: ApiService) { }
+  constructor(private ApiService: ApiService, private route: ActivatedRoute) { 
+    this.cartId = this.route.snapshot.params.id;
+  }
 
   ngOnInit() {
-    this.ApiService.getCart(73)
-      .subscribe((data) => {
+    this.ApiService.getCart(this.cartId)
+      .subscribe((data: any) => {
         console.log(data)
+        this.cart = data;
+        this.shoppingCartProducts = data.shopping_cart_products;
       });
   }
 

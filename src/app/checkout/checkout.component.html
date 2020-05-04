@@ -4,10 +4,11 @@
     <mat-grid-tile [colspan]="7"><h1>Checkout</h1></mat-grid-tile>
     <mat-grid-tile [colspan]="7"></mat-grid-tile>
   
-    <mat-grid-tile [colspan]="21" [rowspan]="9">
+    <mat-grid-tile [colspan]="21" [rowspan]="9" *ngFor="let scp of shoppingCartProducts">
       <app-card-slider
         class="card__slider"
         [readOnly]="true"
+        [cartProductId]=scp
       ></app-card-slider>
     </mat-grid-tile>
   </mat-grid-list>
