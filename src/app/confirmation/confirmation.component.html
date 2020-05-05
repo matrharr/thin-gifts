@@ -1,1 +1,9 @@
-<h1>Your order has been confirmed! You will receive an email shortly.</h1>
+<div *ngIf="order" class="confirmation">
+    <h1>Your order has been confirmed!</h1> 
+    <p>You will receive an email at <b>{{order.email}}</b> shortly.</p>
+
+    <h3>Your order</h3>
+    <p>total: {{order.total_price.price__sum}}</p>
+    <p *ngFor="let i of order.order_products">{{i.name}} by {{i.creator_name}} -- ${{i.price}}</p>
+
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare var paypal;
 
@@ -18,6 +18,7 @@ export class PaymentComponent implements OnInit {
   constructor(
     private ApiService: ApiService,
     private route: ActivatedRoute,
+    private router: Router
   ) {
     this.cartId = this.route.snapshot.params.id;
   }
@@ -46,6 +47,7 @@ export class PaymentComponent implements OnInit {
               this.paidFor = true;
               console.log(data)
               // redirect to receipt page
+              this.router.navigate(['/confirmation', data.id])
             })
         },
         onError: err => {

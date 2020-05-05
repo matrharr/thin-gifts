@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'add-message/:id', component: AddMessageComponent },
   { path: 'card-list', component: CardListComponent },
   { path: 'checkout/:id', component: CheckoutComponent },
-  { path: 'confirmation', component: ConfirmationComponent }
+  { path: 'confirmation/:id', component: ConfirmationComponent },
 ];
 
 @NgModule({

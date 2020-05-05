@@ -82,6 +82,13 @@ export class ApiService {
     )
   }
 
+  getOrder(orderId) {
+    return this.http.get(
+      `http://127.0.0.1:8000/orders/${orderId}/`, 
+      this.requestOptions
+    );
+  }
+
   formatMultiQueryParams(key, values) {
     let queryParams = '';
     values.forEach((val) => {
