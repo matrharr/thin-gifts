@@ -4,10 +4,21 @@
 
 .mat-icon {
     transform: scale(1.5);
-    margin-right: 10px;
+    // margin-right: -10px;
 }
 
 .right-nav-item {
     margin-right: 10px;
     margin-left: 10px;
+}
+
+#lblCartCount {
+    font-size: 12px;
+    background: rgb(42, 218, 218);
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
 }

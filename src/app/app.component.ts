@@ -9,6 +9,7 @@ import { ApiService } from './services/api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  cartItemCount: number
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private ApiService: ApiService){
     iconRegistry.addSvgIcon(
@@ -28,7 +29,7 @@ export class AppComponent {
   onRouteChange() {
     this.ApiService.getCartQuantity()
       .subscribe((data:any) => {
-        console.log(data)
+        this.cartItemCount = data.quantity;
       });
   }
 
