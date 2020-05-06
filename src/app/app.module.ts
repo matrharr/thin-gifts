@@ -23,13 +23,12 @@ import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ExploreModalComponent } from './explore-modal/explore-modal.component';
 import { CardSliderComponent } from './card-slider/card-slider.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { ProductListComponent } from './product-list/product-list.component';
 import { PaymentComponent } from './payment/payment.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 
 
@@ -43,10 +42,10 @@ import { HttpClientModule } from '@angular/common/http';
     AddGiftcardComponent,
     CheckoutComponent,
     ConfirmationComponent,
-    ExploreModalComponent,
     CardSliderComponent,
     ProductListComponent,
-    PaymentComponent
+    PaymentComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +67,6 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ExploreModalComponent]
+  entryComponents: [ShoppingCartComponent]
 })
 export class AppModule { }

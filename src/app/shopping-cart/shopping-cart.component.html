@@ -1,0 +1,13 @@
+<div *ngIf="cart">
+  <h3>Your Cart</h3>
+  <p>total: {{cart.total_price.price__sum}}</p>
+  <div *ngFor="let i of cart.shopping_cart_products_detail">
+    <span>
+      {{i.product_detail.name}} by {{i.product_detail.creator_name}} -- ${{i.product_detail.price}}
+    </span>
+    <button mat-flat-button (click)="deleteCartItem(i)">Remove</button>
+  </div>
+  <button mat-stroked-button color="primary">
+    <a (click)="goToCheckout()">Checkout</a>
+  </button>
+</div>

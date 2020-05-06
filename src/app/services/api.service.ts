@@ -89,6 +89,13 @@ export class ApiService {
     );
   }
 
+  deleteCartProduct(cartProductId) {
+    return this.http.delete(
+      `http://127.0.0.1:8000/shopping_cart_products/${cartProductId}/`, 
+      this.requestOptions
+    );
+  }
+
   formatMultiQueryParams(key, values) {
     let queryParams = '';
     values.forEach((val) => {

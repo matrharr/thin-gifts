@@ -21,7 +21,7 @@ export class CheckoutComponent implements OnInit {
       .subscribe((data: any) => {
         console.log(data)
         this.cart = data;
-        this.shoppingCartProducts = data.shopping_cart_products;
+        this.shoppingCartProducts = data.shopping_cart_products_detail;
       });
   }
 
