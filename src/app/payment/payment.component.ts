@@ -10,8 +10,8 @@ declare var paypal;
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
-  @ViewChild('paypal') paypalElement: ElementRef;
-  @ViewChild('email') emailElement: ElementRef;
+  @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
+  @ViewChild('email', { static: true }) emailElement: ElementRef;
   paidFor = false;
   cartId: String;
   

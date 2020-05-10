@@ -3,13 +3,14 @@
 }
 
 .mat-icon {
-    transform: scale(1.5);
-    // margin-right: -10px;
+    transform: scale(1.0);
 }
 
 .right-nav-item {
-    margin-right: 10px;
-    margin-left: 10px;
+    cursor: pointer;
+    display: block;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 #lblCartCount {
@@ -21,4 +22,16 @@
     -webkit-border-radius: 9px;
     -moz-border-radius: 9px;
     border-radius: 9px;
+}
+
+@media (min-width: 900px) {
+    .mat-icon {
+        transform: scale(1.5);
+    }
+
+    .right-nav-item {
+        margin-right: 10px;
+        margin-left: 10px;
+        cursor: pointer;
+    }
 }
