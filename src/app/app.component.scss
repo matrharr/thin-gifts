@@ -25,7 +25,7 @@
 }
 
 @media (min-width: 900px) {
-    .mat-icon {
+    .cart_icon {
         transform: scale(1.5);
     }
 
@@ -33,5 +33,41 @@
         margin-right: 10px;
         margin-left: 10px;
         cursor: pointer;
+    }
+}
+
+footer {
+    text-align: center;
+    background-color: rgb(163, 180, 180);
+    padding-top: 40px;
+    padding-left: 10px;
+    
+    p {
+        color: white;
+    }
+    
+    input {
+        background-color: white;
+    }
+    
+    button {
+        background-color: black;
+        color: white;
+    }
+
+    .footer__headline {
+        font-weight: bold;
+    }
+
+    .footer__text {
+        line-height: 5px;
+    }
+
+    .divide {
+        padding: 15px;
+    }
+
+    .social_icon {
+        transform: scale(2.2);
     }
 }

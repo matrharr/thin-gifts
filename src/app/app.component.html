@@ -26,7 +26,7 @@
       Login
     </span>
     <span class="right-nav-item" (click)="openCartModal()">
-      <mat-icon>shopping_cart</mat-icon>
+      <mat-icon class="cart_icon">shopping_cart</mat-icon>
       <span id="lblCartCount">{{cartItemCount}}</span>
     </span>
   </div>
@@ -35,5 +35,53 @@
 <router-outlet (activate)="onRouteChange()"></router-outlet>
 
 <footer>
-  Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+  <div
+    fxLayout="row wrap" 
+    fxLayout.lt-sm="column" 
+    fxLayoutGap="50px" 
+    fxLayoutAlign="flex-start"
+  >
+    <div>
+      <p class="footer__headline">RESOURCES</p>
+      <div class="footer__text">
+        <p>My Account</p>
+        <p>How it works</p>
+        <p>Our Story</p>
+        <p>Refer a friend</p>
+        <p>Site Map</p>
+      </div>
+    </div>
+    <div fxFlex="10">
+      <p class="footer__headline">HELP</p>
+      <div class="footer__text">
+        <p>FAQs</p>
+        <p>Contact Form</p>
+      </div>
+    </div>
+    <div fxFlex="20">
+      <p class="footer__headline">STAY IN TOUCH</p>
+      <div>
+        <mat-icon class="social_icon" svgIcon="facebook"></mat-icon>
+        <span class="divide"></span>
+        <mat-icon class="social_icon" svgIcon="instagram"></mat-icon>
+      </div>
+    </div>
+    <div fxFlex="40">
+      <p class="footer__headline">SIGN UP FOR OUR NEWSLETTER</p>
+      <div class="footer__text">
+        <p>Get updates on our latest promos more!</p>
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" value="">
+        </mat-form-field>
+        <button mat-stroked-button color="primary">Submit</button>
+      </div>
+    </div>
+    <div fxFlex="30">
+      <p>&copy;	2020 ThinGifts.com. All rights reserved.</p>
+    </div>
+    <div fxFlex="60">
+      <p>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></p>
+    </div>
+  </div>
 </footer>

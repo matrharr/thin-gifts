@@ -32,6 +32,14 @@ export class AppComponent {
       'keyboard',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/keyboard.svg')
     );
+    iconRegistry.addSvgIcon(
+      'facebook',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons8-facebook.svg')
+    );
+    iconRegistry.addSvgIcon(
+      'instagram',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons8-instagram.svg')
+    );
   }
 
   onRouteChange() {
