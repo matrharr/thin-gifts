@@ -1,32 +1,30 @@
 <div class="card__list">
   <h1 class="card__list__title">Select a {{productName}}</h1>
-  <mat-grid-list cols="9" rowHeight="50vw">
-    <mat-grid-tile 
-      [colspan]="1"
-      [rowspan]="2"
-      class="sidebar"
+  <mat-form-field>
+    <mat-label>Filter by category</mat-label>
+    <mat-select [formControl]="options" (selectionChange)="onFilterChange($event)" multiple>
+      <mat-option 
+        *ngFor="let option of filterOptions"
+        [value]="option.id"
       >
-      <mat-list role="list">
-        <h3 mat-subheader>Theme</h3>
-        <mat-list-item *ngFor="let f of filterOptions">
-          <mat-checkbox (change)="onFilterChange($event)" value="{{f.id}}">{{f.name}}</mat-checkbox>
-        </mat-list-item>
-      </mat-list>
-    </mat-grid-tile>
-    <mat-grid-tile
-        *ngFor="let p of products"
-        [colspan]="2"
-        [rowspan]="1">
-      <mat-card class="card-select">
+        {{option.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+		<div fxFlex="33%;" fxFlex.lt-sm="80%" *ngFor="let p of products">
+      <mat-card class="card_select">
         <mat-card-content>
           <img src="https://image.shutterstock.com/image-vector/creative-minimalistic-thank-you-card-260nw-319787525.jpg" />
           <p>{{p.name}}</p>
-          <p>{{p.price}}</p>
+          <p>${{p.price}}</p>
         </mat-card-content>
         <mat-card-actions>
           <button mat-flat-button (click)="onSelectProduct(p.id)">SELECT</button>
         </mat-card-actions>
       </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+		</div>
+  </div>
 </div>
+

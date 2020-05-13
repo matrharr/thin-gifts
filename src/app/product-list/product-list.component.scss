@@ -1,17 +1,24 @@
-.card__list__title {
+.card__list {
     text-align: center;
- }
+    padding-bottom: 40px;
+    &__title {
+        text-align: center;
+        padding-bottom: 10px;
+     }
+}
 
-.card-select:hover {
-    // background-color: red;
+
+.card_select:hover {
     border: .5px solid grey;
     box-shadow:20px 20px 10px grey;
     cursor: pointer;
 }
 
-// .mat-grid-tile {
-//     border: 1px solid red;
-// }
+
+.card_select {
+    width: 90%;
+    padding-bottom: 10px;
+}
 
 .mat-flat-button {
     background-color: rgb(42, 218, 218);

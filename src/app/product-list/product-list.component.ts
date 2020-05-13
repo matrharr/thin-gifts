@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { filter } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
 import { ApiService } from '../services/api.service';
-import { debug } from 'util';
 import { ActivatedRoute, Router } from '@angular/router';
 
 const productTypeMap = {
@@ -21,6 +20,7 @@ export class ProductListComponent implements OnInit {
 
   @Output() selectProduct = new EventEmitter()
 
+  options = new FormControl();
   selectedFilters = [];
 
   constructor(
@@ -39,16 +39,11 @@ export class ProductListComponent implements OnInit {
 
   onFilterChange(e) {
     console.log(e)
-    if (e.checked) {
-      this.selectedFilters.push(e.source.value);
-    } else {
-      delete this.selectedFilters[this.selectedFilters.indexOf(e.source.value)];
-    }
-    console.log(this.selectedFilters)
-    
+    this.selectedFilters = e.value;
+
     this.ApiService.getProductsByTag(productTypeMap[this.productName], this.selectedFilters)
       .subscribe((data:any) => {
-        console.log(data);
+        // console.log(data);
         this.products = data.results;
       });
   }
