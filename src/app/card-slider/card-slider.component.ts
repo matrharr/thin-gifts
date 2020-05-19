@@ -2,6 +2,9 @@ import { Component, OnInit, Input, HostListener, ViewChild, ElementRef } from '@
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 
+export let states = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY' ];
+
+
 
 @Component({
   selector: 'app-card-slider',
@@ -10,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CardSliderComponent implements OnInit {
   @ViewChild("message") message: ElementRef
+  @ViewChild("simpleMessage") simpleMessage: ElementRef
   slides = [
     'cover',
     'card',
@@ -39,6 +43,8 @@ export class CardSliderComponent implements OnInit {
 
   current = 1;
   cardSliderColumns: number;
+  card: any;
+  states = states;
   @Input() cartProductId: string;
   @Input() readOnly = false;
 
@@ -53,6 +59,7 @@ export class CardSliderComponent implements OnInit {
     this.ApiService.getCartProduct(this.cartProductId)
       .subscribe((data:any) => {
         console.log(data)
+        this.card = data;
         if (data.message) {
           this.message.nativeElement.value = data.message;
         }
@@ -131,6 +138,22 @@ export class CardSliderComponent implements OnInit {
 
   saveMessage(e) {
     const message = this.message.nativeElement.value;
+    const returnAddress = this.getReturnAddress();
+    const recipientAddress = this.getRecipientAddress();
+    const reqData = {
+      message: message,
+      return_address: returnAddress,
+      recipient_address: recipientAddress
+    }
+    this.ApiService.updateCartProduct(reqData, this.cartProductId)
+      .subscribe((data:any) => {
+        console.log(data);
+        this.router.navigate(['/checkout', data.shopping_cart])
+      })
+  }
+
+  saveSimpleMessage() {
+    const message = this.simpleMessage.nativeElement.value;
     const returnAddress = this.getReturnAddress();
     const recipientAddress = this.getRecipientAddress();
     const reqData = {

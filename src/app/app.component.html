@@ -1,6 +1,9 @@
 <!--nav bar-->
 <nav class="navbar fixed-top navbar-expand-lg navbar-light custom-nav">
-  <a class="navbar-brand" [routerLink]="['/home']">ThinGifts</a>
+  <a class="navbar-brand" [routerLink]="['/home']">
+    <img id="thin_gift_logo" src="https://thin-gifts-cards.s3.amazonaws.com/ThinGift+Simple+Logo.jpg">
+    ThinGifts
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -17,7 +20,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['/card-list']">Find cards</a>
           <a class="dropdown-item" [routerLink]="['/add-giftcard']">Find gifts</a>
-          <a class="dropdown-item" href="#">Partnerships</a>
           <a class="dropdown-item" href="#">About ThinGifts</a>
         </div>
       </li>
@@ -27,7 +29,7 @@
     </span>
     <span class="right-nav-item" (click)="openCartModal()">
       <mat-icon class="cart_icon">shopping_cart</mat-icon>
-      <span id="lblCartCount">{{cartItemCount}}</span>
+      <span id="lblCartCount" *ngIf="cartItemCount > 0">{{cartItemCount}}</span>
     </span>
   </div>
 </nav>
@@ -44,11 +46,9 @@
     <div>
       <p class="footer__headline">RESOURCES</p>
       <div class="footer__text">
-        <p>My Account</p>
         <p>How it works</p>
         <p>Our Story</p>
         <p>Refer a friend</p>
-        <p>Site Map</p>
       </div>
     </div>
     <div fxFlex="10">

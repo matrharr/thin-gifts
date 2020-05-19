@@ -71,7 +71,7 @@ input {
     border-top-style: hidden;
     border-right-style: hidden;
     border-left-style: hidden;
-    border-bottom-style: groove;
+    // border-bottom-style: groove;
     // background-color: #eee;
 }
 
@@ -89,5 +89,25 @@ input::placeholder {
     height: 100%;
 }
 
-// mat-form-field {
-// }
+.add_message_simple {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    &__message {
+        textarea {
+            height: 300px;
+            font-family: cursive;
+            font-size: 25px;
+        }
+    }
+    &__addr {
+        .mat-form-field {
+            width: 80%;
+        }
+    }
+    .mat-flat-button {
+        background-color: rgb(235, 189, 90);
+        color: white;
+        width: 80%;
+    }
+}

@@ -22,6 +22,7 @@ export class ProductListComponent implements OnInit {
 
   options = new FormControl();
   selectedFilters = [];
+  hovered = false;
 
   constructor(
     private ApiService:ApiService, 

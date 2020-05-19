@@ -5,6 +5,7 @@
     <span>
       {{i.product_detail.name}} by {{i.product_detail.creator_name}} -- ${{i.product_detail.price}}
     </span>
+    <button mat-flat-button (click)="editCartItem(i)">Edit</button>
     <button mat-flat-button (click)="deleteCartItem(i)">Remove</button>
   </div>
   <button mat-stroked-button color="primary">

@@ -12,17 +12,32 @@
     </mat-select>
   </mat-form-field>
   
-  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+  <div fxLayout="row wrap" class="card__list__products">
 		<div fxFlex="33%;" fxFlex.lt-sm="80%" *ngFor="let p of products">
-      <mat-card class="card_select">
+      <mat-card class="card_select" (mouseover)="p.hovered=true" (mouseout)="p.hovered=false">
         <mat-card-content>
-          <img src="https://image.shutterstock.com/image-vector/creative-minimalistic-thank-you-card-260nw-319787525.jpg" />
-          <p>{{p.name}}</p>
-          <p>${{p.price}}</p>
+          <img class="card_select__image" src="{{p.image_url}}" />
+          <h4>{{p.name}}</h4>
+          <p>{{p.description}}</p>
+          <h5>${{p.price}}</h5>
+          <button 
+            *ngIf="p.hovered" 
+            fxHide.lt-sm="true" 
+            mat-flat-button 
+            (click)="onSelectProduct(p.id)"
+            class="card_select__full_btn"
+          >
+            Add to cart
+          </button>
+          <button 
+            fxShow.lt-sm="true" 
+            fxShow="false" 
+            mat-flat-button 
+            (click)="onSelectProduct(p.id)"
+          >
+            Add to cart
+          </button>
         </mat-card-content>
-        <mat-card-actions>
-          <button mat-flat-button (click)="onSelectProduct(p.id)">SELECT</button>
-        </mat-card-actions>
       </mat-card>
 		</div>
   </div>
