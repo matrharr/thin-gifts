@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ApiService } from './services/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent {
     iconRegistry: MatIconRegistry, 
     sanitizer: DomSanitizer, 
     private ApiService: ApiService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ){
     iconRegistry.addSvgIcon(
       'card',
@@ -51,11 +53,9 @@ export class AppComponent {
   }
 
   openCartModal() {
-    this.dialog.open(ShoppingCartComponent, {
-      width: '500px',
-      height: '500px',
-      data: { id: this.cartId }
-    });
+    if (this.cartId) {
+      this.router.navigate(['/shopping-cart', this.cartId])
+    }
   }
 
 }

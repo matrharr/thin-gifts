@@ -7,10 +7,12 @@ import { AddMessageComponent } from './add-message/add-message.component';
 import { CardListComponent } from './card-list/card-list.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'home', component: HomepageComponent },
+  { path: 'shopping-cart/:id', component: ShoppingCartComponent },
   { path: 'add-address', component: AddAddressComponent },
   { path: 'add-giftcard', component: AddGiftcardComponent },
   { path: 'add-message/:id', component: AddMessageComponent },

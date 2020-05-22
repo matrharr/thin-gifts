@@ -1,7 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -9,20 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-  cart: any
+  cart: any;
+  cartId: string;
 
   constructor(
     private ApiService: ApiService,
     private router: Router,
-    public dialogRef: MatDialogRef<ShoppingCartComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+    private route: ActivatedRoute
+  ) { 
+    this.cartId = this.route.snapshot.params.id;
+  }
 
   ngOnInit() {
-    this.ApiService.getCart(this.data.id)
+    this.ApiService.getCart(this.cartId)
       .subscribe((data:any) => {
         console.log(data);
         this.cart = data;
+        console.log(this.cart)
       });
   }
 
@@ -30,18 +32,16 @@ export class ShoppingCartComponent implements OnInit {
     this.ApiService.deleteCartProduct(item.id)
       .subscribe((data:any) => {
         this.router.navigate(['/home']);
-        this.dialogRef.close();
         console.log(data);
       })
   }
 
   editCartItem(item) {
+    debugger
     this.router.navigate(['/add-message', item.id]);
-    this.dialogRef.close();
   }
 
   goToCheckout() {
     this.router.navigate(['/checkout', this.cart.id]);
-    this.dialogRef.close();
   }
 }

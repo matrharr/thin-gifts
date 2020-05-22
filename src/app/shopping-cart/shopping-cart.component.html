@@ -1,14 +1,67 @@
-<div *ngIf="cart">
-  <h3>Your Cart</h3>
-  <p>total: {{cart.total_price.price__sum}}</p>
-  <div *ngFor="let i of cart.shopping_cart_products_detail">
-    <span>
-      {{i.product_detail.name}} by {{i.product_detail.creator_name}} -- ${{i.product_detail.price}}
-    </span>
-    <button mat-flat-button (click)="editCartItem(i)">Edit</button>
-    <button mat-flat-button (click)="deleteCartItem(i)">Remove</button>
+<div class="shopping_cart" *ngIf="cart != null">
+  <h1 class="shopping_cart_header">Your Cart</h1>
+  <div fxLayout="column wrap">
+    <div fxFlex="80%;" fxFlex.lt-sm="80%">
+      <mat-card class="shopping_cart__summary">
+        <span>
+          Subtotal ({{cart.cart_products.length}} items): 
+          <span class="shopping_cart__summary__price">
+            ${{cart.total_price.price__sum}}
+          </span>
+        </span>
+        <button 
+          class="shopping_cart__summary__checkout_btn"
+          mat-flat-button
+          (click)="goToCheckout()"
+        >
+          Proceed to Checkout
+        </button>
+      </mat-card>
+    </div>
   </div>
-  <button mat-stroked-button color="primary">
-    <a (click)="goToCheckout()">Checkout</a>
-  </button>
+
+  <div fxLayout="column" class="shopping_cart__item_list" fxLayoutGap="45px">
+    <!-- for mobile, add mat-card, for desktop, figure out try to use flex layout side header footer nonsense -->
+    <div fxFlex="100%;" fxFlex.lt-sm="80%" *ngFor="let i of cart.shopping_cart_products_detail">
+      <mat-card
+        fxShow.lt-sm="true"
+        fxShow="false"
+        class="shopping_cart__item" 
+      >
+        <mat-card-content>
+          <mat-card-header>
+            <mat-card-title><a href="" class="shopping_cart__item__title">{{i.product_detail.name}}</a></mat-card-title>
+            <mat-card-subtitle>by {{i.product_detail.creator_name}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{i.product_detail.image_url}}">
+          <mat-card-content>
+            <p>
+              {{i.product_detail.description}}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button (click)="editCartItem(i)">Edit message</button>
+            <button mat-button (click)="deleteCartItem(i)">Delete</button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+      <hr>
+      <div fxHide.lt-sm="true" class="container-full">
+        <div class="p-image">
+          <img src="{{i.product_detail.image_url}}" class="shopping_cart__item__img"/>
+        </div>
+        <div class="p-title">
+          <p><a href="">{{i.product_detail.name}}</a> by {{i.product_detail.creator_name}}</p>
+          <p>{{i.product_detail.description}}</p>
+          <a href="" (click)="editCartItem(i)">Edit message</a> |
+          <a href="" (click)="deleteCartItem(i)">Delete</a>
+        </div>
+        <!-- <div class="p-btns">
+        </div> -->
+        <div class="p-price">
+          <span>${{i.product_detail.price}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

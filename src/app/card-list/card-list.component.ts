@@ -26,6 +26,7 @@ export class CardListComponent implements OnInit {
     const cartData = {
       product: cardId
     }
+    console.log(cardId)
     this.ApiService.addToCart(cartData).
       subscribe((data:any) => {
         console.log(data)

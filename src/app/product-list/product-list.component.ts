@@ -35,6 +35,7 @@ export class ProductListComponent implements OnInit {
   }
 
   onSelectProduct(productId) {
+    console.log('fadsjkfdjak')
     this.selectProduct.emit(productId)
   }
 

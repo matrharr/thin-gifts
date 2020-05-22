@@ -55,7 +55,6 @@ export class CardSliderComponent implements OnInit {
 
   ngOnInit() {
     this.cardSliderColumns = (window.innerWidth <= 400) ? 9 : 18;
-    // on individual this is fine, but on checkout, will need to sync this with multiple items, can't just pull id from url because that will be cart id not cart prod id
     this.ApiService.getCartProduct(this.cartProductId)
       .subscribe((data:any) => {
         console.log(data)
