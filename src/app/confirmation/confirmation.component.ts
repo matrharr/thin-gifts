@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { ActivatedRoute } from '@angular/router';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-confirmation',
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ConfirmationComponent implements OnInit {
   orderId: string;
   order: any;
-
+  today = formatDate(new Date(), 'yyyy/MM/dd', 'en');
   constructor(private ApiService: ApiService, private route: ActivatedRoute) { 
     this.orderId = this.route.snapshot.params.id;
   }

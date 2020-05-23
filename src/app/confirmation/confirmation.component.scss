@@ -1,3 +1,68 @@
 .confirmation {
-    padding-top: 3.5em;
+    display: flex;
+    padding: 10px;
+    margin-top: 3.5em;
+    flex-direction: column;
+    .title {
+        text-align: center;
+    }
+}
+
+.top {
+    flex: 3;
+    background-color: rgb(220, 224, 224);
+    padding: 10px;
+    text-align: center;
+    &__title {
+        color: rgb(245, 131, 38);
+    }
+    &__order_date {
+        display: inline;
+    }
+}
+
+.payment {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(220, 224, 224);
+    padding: 10px;
+    text-align: center;
+    &__detail {
+        flex: 1;
+    }
+    &__summary {
+        flex: 1;
+    }
+}
+
+.orders {
+    flex: 3;
+    text-align: center;
+    padding: 10px;
+    img {
+        width: 50%;
+    }
+}
+
+
+@media(min-width: 900px) {
+    .top {
+        text-align: left;
+    }
+
+    .payment {
+        flex-direction: row;
+    }
+
+    .orders {
+        text-align: left;
+        &__detail {
+            display: flex;
+            justify-content: space-between;
+        }
+        img {
+            width: 20%;
+        }
+    }
 }

@@ -1,9 +1,48 @@
 <div *ngIf="order" class="confirmation">
-    <h1>Your order has been confirmed!</h1> 
-    <p>You will receive an email at <b>{{order.email}}</b> shortly.</p>
-
-    <h3>Your order</h3>
-    <p>total: {{order.total_price.price__sum}}</p>
-    <p *ngFor="let i of order.order_products">{{i.name}} by {{i.creator_name}} -- ${{i.price}}</p>
-
+    <h1 class="title">Order Confirmation</h1>
+    <div class="top">
+        <h1 class="top__title">Thank you for your Order!</h1> 
+        <p class="">Order Date: {{today}} | Order Number: {{order.id}}</p> 
+        <p>Estimated Delivery: </p>
+        <p>A confirmation email will be sent to <b>{{order.email}}</b> once your order has processed.</p>
+    </div>
+    <hr>
+    <div class="payment">
+        <div class="payment__detail">
+            <h1>Payment</h1>
+            <p>Paid with Paypal</p>
+        </div>
+        <div class="payment__summary">
+            <h1>Order summary</h1>
+            <p>Subtotal ${{order.total_price.price__sum}}</p>
+            <p>Shipping $X</p>
+            <hr>
+            <h3>Order Total ${{order.total_price.price__sum}}</h3>
+        </div>
+    </div>
+    <div class="orders">
+        <h3>Your order</h3>
+        <hr>
+        <div *ngFor="let i of order.order_products_set" class="orders__detail">
+            <img src="{{i.product_detail.image_url}}">
+            <p>{{i.product_detail.name}} by {{i.product_detail.creator_name}}</p>
+            <div>
+                <h4>Return Address</h4>
+                <p>{{i.recipient_address_detail.name}}</p>
+                <p>{{i.recipient_address_detail.street}}</p>
+                <p>
+                    {{i.recipient_address_detail.city}}, {{i.recipient_address_detail.state}} {{i.recipient_address_detail.code}}
+                </p>
+            </div>
+            <div>
+                <h4>Recipient Address</h4>
+                <p>{{i.return_address_detail.name}}</p>
+                <p>{{i.return_address_detail.street}}</p>
+                <p>
+                    {{i.return_address_detail.city}}, {{i.return_address_detail.state}} {{i.return_address_detail.code}}
+                </p>
+            </div>
+            <p>Price: ${{i.product_detail.price}}</p>
+        </div>
+    </div>
 </div>

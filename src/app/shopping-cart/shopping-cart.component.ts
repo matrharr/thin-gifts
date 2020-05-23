@@ -37,7 +37,6 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   editCartItem(item) {
-    debugger
     this.router.navigate(['/add-message', item.id]);
   }
 
