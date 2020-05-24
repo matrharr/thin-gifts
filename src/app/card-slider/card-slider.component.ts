@@ -45,6 +45,7 @@ export class CardSliderComponent implements OnInit {
   cardSliderColumns: number;
   card: any;
   states = states;
+  loading: boolean;
   @Input() cartProductId: string;
   @Input() readOnly = false;
 
@@ -54,11 +55,13 @@ export class CardSliderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loading = true;
     this.cardSliderColumns = (window.innerWidth <= 400) ? 9 : 18;
     this.ApiService.getCartProduct(this.cartProductId)
       .subscribe((data:any) => {
         console.log(data)
         this.card = data;
+        this.loading = false;
         if (data.message) {
           this.message.nativeElement.value = data.message;
         }

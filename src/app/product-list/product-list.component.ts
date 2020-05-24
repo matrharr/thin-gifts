@@ -22,7 +22,7 @@ export class ProductListComponent implements OnInit {
 
   options = new FormControl();
   selectedFilters = [];
-  hovered = false;
+  loading: boolean
 
   constructor(
     private ApiService:ApiService, 
@@ -31,7 +31,14 @@ export class ProductListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading = true;
     // if tag filter in url, call func
+  }
+
+  ngOnChanges(changes) {
+    if (changes.products.currentValue) {
+      this.loading = false;
+    }
   }
 
   onSelectProduct(productId) {

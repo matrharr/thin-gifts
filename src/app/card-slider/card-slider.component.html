@@ -1,241 +1,246 @@
-<mat-grid-list [cols]="18" rowHeight="3vw" fxHide.lt-sm="true">
-  <mat-grid-tile
-    [colspan]="4"
-  >
-    {{card ? card.product_detail.name : null}}
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="2" *ngIf="!readOnly"></mat-grid-tile>
-  <mat-grid-tile [colspan]="1" *ngIf="readOnly"></mat-grid-tile>
-  <mat-grid-tile
-    [colspan]="2"
-    [ngClass]="{'selected': isCover()}"
-    (click)="changeSlide('cover')"
-  >
-    <p class="slider__option">Cover</p>
-  </mat-grid-tile>
-  <mat-grid-tile
-    [colspan]="4"
-    [ngClass]="{'selected': isCard()}"
-    (click)="changeSlide('card')"
-  >
-    <p class="slider__option">Card</p>
-  </mat-grid-tile>
-  <mat-grid-tile
-    [colspan]="2"
-    [ngClass]="{'selected': isAddressing()}"
-    (click)="changeSlide('addressing')"
-  >
-    <p class="slider__option">Addressing</p>
-  </mat-grid-tile>
-  <mat-grid-tile
-    [colspan]="4"
-  >
-    <button mat-stroked-button color="primary" *ngIf="!readOnly" (click)="saveMessage()">Done</button>
-    <button mat-stroked-button color="primary" *ngIf="readOnly">
-      <a [routerLink]="['/add-message', this.cartProductId]">Edit</a>
-    </button>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="1" *ngIf="readOnly"></mat-grid-tile>
-  <mat-grid-tile
-    [colspan]="3"
-    [rowspan]="12"
-    *ngIf="!readOnly"
-  >
-    <mat-grid-list cols="3" rowHeight="5vw" class="sidebar__tools">
-      <mat-grid-tile [colspan]="3">
-        <mat-form-field class="tool__control text__font__control">
-          <mat-label>Text Font</mat-label>
-          <select matNativeControl required>
-            <option *ngFor="let opt of fontOptions" [value]="opt.value">
-              {{opt.text}}
-            </option>
-          </select>
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="3">
-        <mat-form-field class="tool__control text__size__control">
-          <mat-label>Text Size</mat-label>
-          <select matNativeControl required>
-            <option *ngFor="let opt of sizeOptions" [value]="opt.value">
-              {{opt.text}}
-            </option>
-          </select>
-        </mat-form-field>
-      </mat-grid-tile>
-      <mat-grid-tile [colspan]="3">
-        <mat-form-field class="tool__control text__color__control">
-          <mat-label>Text Color</mat-label>
-          <select matNativeControl required>
-            <option *ngFor="let opt of colorOptions" [value]="opt.value">
-              {{opt.text}}
-            </option>
-        </select>
-        </mat-form-field>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </mat-grid-tile>
-  <mat-grid-tile
-    [colspan]="3"
-    [rowspan]="12"
-    *ngIf="readOnly"
-  ></mat-grid-tile>
-  <mat-grid-tile [colspan]="1" [rowspan]="12" *ngIf="!readOnly"></mat-grid-tile>
-  <div *ngIf="isCard()">
-    <mat-grid-tile [colspan]="6" [rowspan]="12">
-      <div class="card__inside"></div>
+<div class="spinner">
+  <mat-spinner *ngIf="loading" style="margin:0 auto;"></mat-spinner>
+</div>
+<div *ngIf="!loading">
+  <mat-grid-list [cols]="18" rowHeight="3vw" fxHide.lt-sm="true">
+    <mat-grid-tile
+      [colspan]="4"
+    >
+      {{card ? card.product_detail.name : null}}
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="6" [rowspan]="12">
-      <div class="card__inside">
-        <textarea 
-          #message
-          class="card__text" 
-          placeholder="Write your message here..."
-        >Dear ,
-                                      
-        
-        
-        
-        Best wishes,
-      </textarea>
-      </div>
+    <mat-grid-tile [colspan]="2" *ngIf="!readOnly"></mat-grid-tile>
+    <mat-grid-tile [colspan]="1" *ngIf="readOnly"></mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="2"
+      [ngClass]="{'selected': isCover()}"
+      (click)="changeSlide('cover')"
+    >
+      <p class="slider__option">Cover</p>
     </mat-grid-tile>
-  </div>
-  <div *ngIf="isCover()">
-    <mat-grid-tile [colspan]="12" [rowspan]="12">
-      <div class="card-cover-wrapper">
+    <mat-grid-tile
+      [colspan]="4"
+      [ngClass]="{'selected': isCard()}"
+      (click)="changeSlide('card')"
+    >
+      <p class="slider__option">Card</p>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="2"
+      [ngClass]="{'selected': isAddressing()}"
+      (click)="changeSlide('addressing')"
+    >
+      <p class="slider__option">Addressing</p>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="4"
+    >
+      <button mat-stroked-button color="primary" *ngIf="!readOnly" (click)="saveMessage()">Done</button>
+      <button mat-stroked-button color="primary" *ngIf="readOnly">
+        <a [routerLink]="['/add-message', this.cartProductId]">Edit</a>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" *ngIf="readOnly"></mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="12"
+      *ngIf="!readOnly"
+    >
+      <mat-grid-list cols="3" rowHeight="5vw" class="sidebar__tools">
+        <mat-grid-tile [colspan]="3">
+          <mat-form-field class="tool__control text__font__control">
+            <mat-label>Text Font</mat-label>
+            <select matNativeControl required>
+              <option *ngFor="let opt of fontOptions" [value]="opt.value">
+                {{opt.text}}
+              </option>
+            </select>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3">
+          <mat-form-field class="tool__control text__size__control">
+            <mat-label>Text Size</mat-label>
+            <select matNativeControl required>
+              <option *ngFor="let opt of sizeOptions" [value]="opt.value">
+                {{opt.text}}
+              </option>
+            </select>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3">
+          <mat-form-field class="tool__control text__color__control">
+            <mat-label>Text Color</mat-label>
+            <select matNativeControl required>
+              <option *ngFor="let opt of colorOptions" [value]="opt.value">
+                {{opt.text}}
+              </option>
+          </select>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="3"
+      [rowspan]="12"
+      *ngIf="readOnly"
+    ></mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="12" *ngIf="!readOnly"></mat-grid-tile>
+    <div *ngIf="isCard()">
+      <mat-grid-tile [colspan]="6" [rowspan]="12">
+        <div class="card__inside"></div>
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="6" [rowspan]="12">
+        <div class="card__inside">
+          <textarea 
+            #message
+            class="card__text" 
+            placeholder="Write your message here..."
+          >Dear ,
+                                        
+          
+          
+          
+          Best wishes,
+        </textarea>
+        </div>
+      </mat-grid-tile>
+    </div>
+    <div *ngIf="isCover()">
+      <mat-grid-tile [colspan]="12" [rowspan]="12">
+        <div class="card-cover-wrapper">
+          <img class="card-cover" src="https://image.shutterstock.com/image-vector/creative-minimalistic-thank-you-card-260nw-319787525.jpg" />
+        </div>
+      </mat-grid-tile>
+    </div>
+    <div *ngIf="isAddressing()">
+      <mat-grid-tile [colspan]="13" [rowspan]="12">
+        <div class="outer__envelope">
+          <mat-grid-list class="envelope" cols="7" rowHeight="4vw">
+            
+            <mat-grid-tile [colspan]="3" [rowspan]="1">
+              <input #ret_street class="address__line" placeholder="Sender">
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
+            
+            <mat-grid-tile [colspan]="3" [rowspan]="1">
+              <input #ret_city class="address__line" placeholder="Return Address">
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
+            
+            <mat-grid-tile [colspan]="3" [rowspan]="1">
+              <input #ret_state class="address__line" placeholder="Return Address">
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3" [rowspan]="1"></mat-grid-tile>
+            
+            <mat-grid-tile [colspan]="7" [rowspan]="2"></mat-grid-tile>
+            
+            <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
+            <mat-grid-tile [colspan]="3" [rowspan]="1">
+              <input #rec_street class="address__line" placeholder="Recipient">
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
+            <mat-grid-tile [colspan]="3" [rowspan]="1">
+              <input #rec_city class="address__line" placeholder="Recipient Address">
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
+            <mat-grid-tile [colspan]="3" [rowspan]="1">
+              <input #rec_state class="address__line" placeholder="Recipient Address">
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </mat-grid-tile>
+    </div>
+    <mat-grid-tile [colspan]="8" *ngIf="!readOnly"></mat-grid-tile>
+    <mat-grid-tile [colspan]="7" *ngIf="readOnly"></mat-grid-tile>
+    <mat-grid-tile [colspan]="2">
+      <mat-icon color="primary" (click)="moveLeft()">arrow_back</mat-icon>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2">
+      <mat-icon color="primary" (click)="moveRight()">arrow_forward</mat-icon>
+    </mat-grid-tile>
+  </mat-grid-list>
+  
+  <div fxShow.lt-sm="true" fxShow="false" class="add_message_simple">
+    <div
+      fxLayout="row wrap" 
+      fxLayout.lt-sm="column" 
+      fxLayoutGap="80px" 
+      fxLayoutAlign="flex-start"
+    >
+      <div>
         <img class="card-cover" src="https://image.shutterstock.com/image-vector/creative-minimalistic-thank-you-card-260nw-319787525.jpg" />
       </div>
-    </mat-grid-tile>
-  </div>
-  <div *ngIf="isAddressing()">
-    <mat-grid-tile [colspan]="13" [rowspan]="12">
-      <div class="outer__envelope">
-        <mat-grid-list class="envelope" cols="7" rowHeight="4vw">
-          
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input #ret_street class="address__line" placeholder="Sender">
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
-          
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input #ret_city class="address__line" placeholder="Return Address">
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
-          
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input #ret_state class="address__line" placeholder="Return Address">
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1"></mat-grid-tile>
-          
-          <mat-grid-tile [colspan]="7" [rowspan]="2"></mat-grid-tile>
-          
-          <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input #rec_street class="address__line" placeholder="Recipient">
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input #rec_city class="address__line" placeholder="Recipient Address">
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            <input #rec_state class="address__line" placeholder="Recipient Address">
-          </mat-grid-tile>
-        </mat-grid-list>
-      </div>
-    </mat-grid-tile>
-  </div>
-  <mat-grid-tile [colspan]="8" *ngIf="!readOnly"></mat-grid-tile>
-  <mat-grid-tile [colspan]="7" *ngIf="readOnly"></mat-grid-tile>
-  <mat-grid-tile [colspan]="2">
-    <mat-icon color="primary" (click)="moveLeft()">arrow_back</mat-icon>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="2">
-    <mat-icon color="primary" (click)="moveRight()">arrow_forward</mat-icon>
-  </mat-grid-tile>
-</mat-grid-list>
-
-<div fxShow.lt-sm="true" fxShow="false" class="add_message_simple">
-  <div
-    fxLayout="row wrap" 
-    fxLayout.lt-sm="column" 
-    fxLayoutGap="80px" 
-    fxLayoutAlign="flex-start"
-  >
-    <div>
-      <img class="card-cover" src="https://image.shutterstock.com/image-vector/creative-minimalistic-thank-you-card-260nw-319787525.jpg" />
-    </div>
-    <div class="add_message_simple__message">
-      <h3>Message</h3>
-      <mat-form-field appearance="fill" style="width: 300px;">
-        <mat-label>Add your message</mat-label>
-        <textarea #simpleMessage matInput></textarea>
-      </mat-form-field>
-    </div>
-    <div class="add_message_simple__addr">
-      <h3>Return Address</h3>
-      <div>
-        <mat-form-field appearance="standard">
-          <mat-label>Name</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="standard">
-          <mat-label>Address 1</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="standard">
-          <mat-label>Address 2</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="standard">
-          <mat-label>City</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="standard">
-          <mat-label>State</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let s of states" value="{{s}}">{{s}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="standard">
-          <mat-label>Zip Code</mat-label>
-          <input matInput>
+      <div class="add_message_simple__message">
+        <h3>Message</h3>
+        <mat-form-field appearance="fill" style="width: 300px;">
+          <mat-label>Add your message</mat-label>
+          <textarea #simpleMessage matInput></textarea>
         </mat-form-field>
       </div>
-    </div>
-    <div class="add_message_simple__addr">
-      <h3>Recipient Address</h3>
-      <div>
-        <mat-form-field appearance="standard">
-          <mat-label>Name</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="standard">
-          <mat-label>Address 1</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="standard">
-          <mat-label>Address 2</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="standard">
-          <mat-label>City</mat-label>
-          <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="standard">
-          <mat-label>State</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let s of states" value="{{s}}">{{s}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="standard">
-          <mat-label>Zip Code</mat-label>
-          <input matInput>
-        </mat-form-field>
+      <div class="add_message_simple__addr">
+        <h3>Return Address</h3>
+        <div>
+          <mat-form-field appearance="standard">
+            <mat-label>Name</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>Address 1</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>Address 2</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>City</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>State</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let s of states" value="{{s}}">{{s}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>Zip Code</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="add_message_simple__addr">
+        <h3>Recipient Address</h3>
+        <div>
+          <mat-form-field appearance="standard">
+            <mat-label>Name</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>Address 1</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>Address 2</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>City</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>State</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let s of states" value="{{s}}">{{s}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="standard">
+            <mat-label>Zip Code</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
       </div>
     </div>
+    <button mat-flat-button (click)="saveSimpleMessage()">Add to cart</button>
   </div>
-  <button mat-flat-button (click)="saveSimpleMessage()">Add to cart</button>
 </div>

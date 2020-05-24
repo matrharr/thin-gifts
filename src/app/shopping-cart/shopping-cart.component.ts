@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ShoppingCartComponent implements OnInit {
   cart: any;
   cartId: string;
+  loading: boolean;
 
   constructor(
     private ApiService: ApiService,
@@ -20,11 +21,13 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.ApiService.getCart(this.cartId)
       .subscribe((data:any) => {
         console.log(data);
         this.cart = data;
         console.log(this.cart)
+        this.loading = false;
       });
   }
 

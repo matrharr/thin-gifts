@@ -1,45 +1,48 @@
 <div class="card__list">
   <h1 class="card__list__title">Select a {{productName}}</h1>
-  <mat-form-field>
-    <mat-label>Filter by category</mat-label>
-    <mat-select [formControl]="options" (selectionChange)="onFilterChange($event)" multiple>
-      <mat-option 
-        *ngFor="let option of filterOptions"
-        [value]="option.id"
-      >
-        {{option.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  
-  <div fxLayout="row wrap" class="card__list__products">
-		<div fxFlex="33%;" fxFlex.lt-sm="80%" *ngFor="let p of products">
-      <mat-card class="card_select" (mouseover)="p.hovered=true" >
-        <mat-card-content>
-          <img class="card_select__image" src="{{p.image_url}}" />
-          <h4>{{p.name}}</h4>
-          <p>{{p.description}}</p>
-          <h5>${{p.price}}</h5>
-          <button 
-            *ngIf="p.hovered" 
-            fxHide.lt-sm="true" 
-            mat-flat-button 
-            (click)="onSelectProduct(p.id)"
-            class="card_select__full_btn"
-          >
-            Add to cart
-          </button>
-          <button 
-            fxShow.lt-sm="true" 
-            fxShow="false" 
-            mat-flat-button 
-            (click)="onSelectProduct(p.id)"
-          >
-            Add to cart
-          </button>
-        </mat-card-content>
-      </mat-card>
-		</div>
+  <mat-spinner *ngIf="loading" style="margin:0 auto;"></mat-spinner>
+  <div *ngIf="!loading">
+    <mat-form-field>
+      <mat-label>Filter by category</mat-label>
+      <mat-select [formControl]="options" (selectionChange)="onFilterChange($event)" multiple>
+        <mat-option 
+          *ngFor="let option of filterOptions"
+          [value]="option.id"
+        >
+          {{option.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <div fxLayout="row wrap" class="card__list__products">
+      <div fxFlex="33%;" fxFlex.lt-sm="80%" *ngFor="let p of products">
+        <mat-card class="card_select" (mouseover)="p.hovered=true" >
+          <mat-card-content>
+            <img class="card_select__image" src="{{p.image_url}}" />
+            <h4>{{p.name}}</h4>
+            <p>{{p.description}}</p>
+            <h5>${{p.price}}</h5>
+            <button 
+              *ngIf="p.hovered" 
+              fxHide.lt-sm="true" 
+              mat-flat-button 
+              (click)="onSelectProduct(p.id)"
+              class="card_select__full_btn"
+            >
+              Add to cart
+            </button>
+            <button 
+              fxShow.lt-sm="true" 
+              fxShow="false" 
+              mat-flat-button 
+              (click)="onSelectProduct(p.id)"
+            >
+              Add to cart
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
   </div>
 </div>
 

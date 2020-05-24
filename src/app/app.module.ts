@@ -24,6 +24,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { CardSliderComponent } from './card-slider/card-slider.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -68,6 +69,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatMenuModule,
     MatDialogModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
     HttpClientModule
   ],
   providers: [],
