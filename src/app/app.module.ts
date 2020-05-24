@@ -30,6 +30,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { PaymentComponent } from './payment/payment.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -49,7 +50,9 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     ShoppingCartComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule,

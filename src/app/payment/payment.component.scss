@@ -1,9 +1,13 @@
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
+.payment_form {
+    min-width: 300px;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-.example-full-width {
-    width: 100%;
+
+.email {
+    width: 60%;
 }

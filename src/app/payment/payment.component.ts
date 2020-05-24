@@ -1,8 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ApiService } from '../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+import { ApiService } from '../services/api.service';
 
 declare var paypal;
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-payment',
@@ -14,6 +23,11 @@ export class PaymentComponent implements OnInit {
   @ViewChild('email', { static: true }) emailElement: ElementRef;
   paidFor = false;
   cartId: String;
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+  matcher = new MyErrorStateMatcher();
   
   constructor(
     private ApiService: ApiService,
@@ -40,8 +54,11 @@ export class PaymentComponent implements OnInit {
           });
         },
         onApprove: async (data, actions) => {
-          // const order = await actions.order.capture();
           const email = this.emailElement.nativeElement.value;
+          if (this.emailFormControl.invalid) {
+            alert('Please fill in a valid email');
+            return;
+          }
           this.ApiService.captureOrder(data.orderID, this.cartId, email)
             .subscribe((data:any) => {
               this.paidFor = true;
@@ -52,6 +69,7 @@ export class PaymentComponent implements OnInit {
         },
         onError: err => {
           // display to user
+          debugger;
           console.log(err)
         }
       })
