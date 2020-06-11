@@ -6,7 +6,7 @@
     <mat-grid-tile
       [colspan]="4"
     >
-      {{card ? card.product_detail.name : null}}
+      <h3>{{card ? card.product_detail.name : null}}</h3>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2" *ngIf="!readOnly"></mat-grid-tile>
     <mat-grid-tile [colspan]="1" *ngIf="readOnly"></mat-grid-tile>
@@ -48,8 +48,8 @@
       <mat-grid-list cols="3" rowHeight="5vw" class="sidebar__tools">
         <mat-grid-tile [colspan]="3">
           <mat-form-field class="tool__control text__font__control">
-            <mat-label>Text Font</mat-label>
-            <select matNativeControl required>
+            <mat-label>Font</mat-label>
+            <select matNativeControl (change)="onFontChange($event.target.value)">
               <option *ngFor="let opt of fontOptions" [value]="opt.value">
                 {{opt.text}}
               </option>
@@ -57,19 +57,9 @@
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="3">
-          <mat-form-field class="tool__control text__size__control">
-            <mat-label>Text Size</mat-label>
-            <select matNativeControl required>
-              <option *ngFor="let opt of sizeOptions" [value]="opt.value">
-                {{opt.text}}
-              </option>
-            </select>
-          </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="3">
           <mat-form-field class="tool__control text__color__control">
-            <mat-label>Text Color</mat-label>
-            <select matNativeControl required>
+            <mat-label>Color</mat-label>
+            <select matNativeControl (change)="onColorChange($event.target.value)">
               <option *ngFor="let opt of colorOptions" [value]="opt.value">
                 {{opt.text}}
               </option>
@@ -107,7 +97,7 @@
     <div *ngIf="isCover()">
       <mat-grid-tile [colspan]="12" [rowspan]="12">
         <div class="card-cover-wrapper">
-          <img class="card-cover" src="https://image.shutterstock.com/image-vector/creative-minimalistic-thank-you-card-260nw-319787525.jpg" />
+          <img class="card-cover" src="{{card.product_detail.image_url}}" />
         </div>
       </mat-grid-tile>
     </div>

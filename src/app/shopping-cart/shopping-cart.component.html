@@ -23,7 +23,6 @@
     </div>
   
     <div fxLayout="column" class="shopping_cart__item_list" fxLayoutGap="45px">
-      <!-- for mobile, add mat-card, for desktop, figure out try to use flex layout side header footer nonsense -->
       <div fxFlex="100%;" fxFlex.lt-sm="80%" *ngFor="let i of cart.shopping_cart_products_detail">
         <mat-card
           fxShow.lt-sm="true"

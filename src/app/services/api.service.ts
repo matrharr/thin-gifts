@@ -18,9 +18,21 @@ export class ApiService {
     }
   }
 
-  getProducts(type) {
+  formatQP(queryParams){
+    let queryString = '';
+    for (let [key, value] of Object.entries(queryParams)) {
+      queryString += `${key}=${value}`;
+    }
+    return queryString
+  }
+
+  getProducts(type, qpObj) {
+    let qp;
+    if(qpObj) {
+      qp = this.formatQP(qpObj);
+    }
     return this.http.get(
-      `http://127.0.0.1:8000/products/get_products/?type=${type}`, 
+      `http://127.0.0.1:8000/products/get_products/?type=${type}&${qp}`, 
       this.requestOptions
     );
   }
@@ -63,7 +75,10 @@ export class ApiService {
   }
 
   getProductsByTag(productType, tagIds) {
-    const queryParams = this.formatMultiQueryParams('tags', tagIds);
+    let queryParams = '';
+    if(tagIds) {
+      queryParams = this.formatTagQueryParams('tags', tagIds);
+    }
     return this.http.get(
       `http://127.0.0.1:8000/products/?type=${productType}&${queryParams}`, 
       this.requestOptions
@@ -96,7 +111,7 @@ export class ApiService {
     );
   }
 
-  formatMultiQueryParams(key, values) {
+  formatTagQueryParams(key, values) {
     let queryParams = '';
     values.forEach((val) => {
       queryParams += `${key}=${val}&`

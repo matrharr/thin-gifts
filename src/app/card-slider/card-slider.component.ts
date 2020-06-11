@@ -12,7 +12,12 @@ export let states = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC'
   styleUrls: ['./card-slider.component.scss']
 })
 export class CardSliderComponent implements OnInit {
-  @ViewChild("message") message: ElementRef
+  @ViewChild("message", {static: false}) message: ElementRef
+  @ViewChild("message") set message1(message:ElementRef) {
+    if(this.messageData){
+      this.message.nativeElement.value = this.messageData;
+    }
+  }
   @ViewChild("simpleMessage") simpleMessage: ElementRef
   slides = [
     'cover',
@@ -21,10 +26,8 @@ export class CardSliderComponent implements OnInit {
   ];
   
   fontOptions = [
-    { value: '', text: '' },
-    { value: 'arial', text: 'Arial' },
-    { value: 'roboto', text: 'Roboto' },
-    { value: 'verdana', text: 'Verdana' },
+    { value: 'cursive', text: 'Cursive' },
+    { value: 'regular', text: 'Regular' },
   ];
 
   sizeOptions = [
@@ -35,10 +38,8 @@ export class CardSliderComponent implements OnInit {
   ];
 
   colorOptions = [
-    { value: '', text: '' },
+    { value: 'black', text: 'Black' },
     { value: 'blue', text: 'Blue' },
-    { value: 'red', text: 'Red' },
-    { value: 'green', text: 'Green' },
   ];
 
   current = 1;
@@ -46,6 +47,7 @@ export class CardSliderComponent implements OnInit {
   card: any;
   states = states;
   loading: boolean;
+  messageData: any;
   @Input() cartProductId: string;
   @Input() readOnly = false;
 
@@ -63,7 +65,7 @@ export class CardSliderComponent implements OnInit {
         this.card = data;
         this.loading = false;
         if (data.message) {
-          this.message.nativeElement.value = data.message;
+          this.messageData = data.message;
         }
       })
   }
@@ -168,6 +170,24 @@ export class CardSliderComponent implements OnInit {
         console.log(data);
         this.router.navigate(['/checkout', data.shopping_cart])
       })
+  }
+
+  onFontChange(value) {
+    if(value === "regular") {
+      this.message.nativeElement.style.fontFamily = "Times New Roman";
+    }
+    else if(value === "cursive") {
+      this.message.nativeElement.style.fontFamily = "Cursive";
+    }
+  }
+
+  onColorChange(value) {
+    if(value === "black") {
+      this.message.nativeElement.style.color = "black";
+    }
+    else if(value === "blue") {
+      this.message.nativeElement.style.color = "blue";
+    }
   }
 
 }
