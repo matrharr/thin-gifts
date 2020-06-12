@@ -26,8 +26,8 @@ export class CardSliderComponent implements OnInit {
   ];
   
   fontOptions = [
-    { value: 'cursive', text: 'Cursive' },
-    { value: 'regular', text: 'Regular' },
+    { value: 'CURSIVE', text: 'Cursive' },
+    { value: 'REGULAR', text: 'Regular' },
   ];
 
   sizeOptions = [
@@ -38,8 +38,8 @@ export class CardSliderComponent implements OnInit {
   ];
 
   colorOptions = [
-    { value: 'black', text: 'Black' },
-    { value: 'blue', text: 'Blue' },
+    { value: 'BLACK', text: 'Black' },
+    { value: 'LIGHT_BLUE', text: 'Light Blue' },
   ];
 
   current = 1;
@@ -48,6 +48,8 @@ export class CardSliderComponent implements OnInit {
   states = states;
   loading: boolean;
   messageData: any;
+  font = 'CURSIVE';
+  color = 'BLACK';
   @Input() cartProductId: string;
   @Input() readOnly = false;
 
@@ -146,6 +148,8 @@ export class CardSliderComponent implements OnInit {
     const recipientAddress = this.getRecipientAddress();
     const reqData = {
       message: message,
+      color: this.color,
+      font: this.font,
       return_address: returnAddress,
       recipient_address: recipientAddress
     }
@@ -173,6 +177,7 @@ export class CardSliderComponent implements OnInit {
   }
 
   onFontChange(value) {
+    this.font = value;
     if(value === "regular") {
       this.message.nativeElement.style.fontFamily = "Times New Roman";
     }
@@ -182,11 +187,12 @@ export class CardSliderComponent implements OnInit {
   }
 
   onColorChange(value) {
+    this.color = value;
     if(value === "black") {
       this.message.nativeElement.style.color = "black";
     }
     else if(value === "blue") {
-      this.message.nativeElement.style.color = "blue";
+      this.message.nativeElement.style.color = "rgb(90,128,152)";
     }
   }
 
