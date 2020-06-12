@@ -8,7 +8,7 @@ export let states = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC'
 
 @Component({
   selector: 'app-card-slider',
-  templateUrl: './card-slider.component.html',
+  templateUrl: './card-slider2.component.html',
   styleUrls: ['./card-slider.component.scss']
 })
 export class CardSliderComponent implements OnInit {

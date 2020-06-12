@@ -26,7 +26,7 @@ export class ApiService {
     return queryString
   }
 
-  getProducts(type, qpObj) {
+  getProducts(type, qpObj=null) {
     let qp;
     if(qpObj) {
       qp = this.formatQP(qpObj);
