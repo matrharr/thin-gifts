@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ShoppingCartComponent implements OnInit {
   cart: any;
+  isEmpty: boolean;
   cartId: string;
   loading: boolean;
 
@@ -24,10 +25,12 @@ export class ShoppingCartComponent implements OnInit {
     this.loading = true;
     this.ApiService.getCart(this.cartId)
       .subscribe((data:any) => {
-        console.log(data);
         this.cart = data;
         console.log(this.cart)
         this.loading = false;
+        if (this.cart.cart_products.length == 0) {
+          this.isEmpty = true;
+        }
       });
   }
 

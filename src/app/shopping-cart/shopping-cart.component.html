@@ -1,7 +1,10 @@
-<div class="shopping_cart" *ngIf="cart != null">
+<div class="shopping_cart">
   <h1 class="shopping_cart_header">Your Cart</h1>
   <mat-spinner *ngIf="loading" style="margin:0 auto;"></mat-spinner>
-  <div *ngIf="!loading">
+  <div>
+    <h3>Your cart is empty. Check out some awesome cards <a class="shop" [routerLink]="['/card-list']">here!</a></h3>
+  </div>
+  <div *ngIf="!loading && !isEmpty">
     <div fxLayout="column wrap">
       <div fxFlex="80%;" fxFlex.lt-sm="80%">
         <mat-card class="shopping_cart__summary">

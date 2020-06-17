@@ -19,14 +19,13 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['/card-list']">Find cards</a>
-          <a class="dropdown-item" [routerLink]="['/add-giftcard']">Find gifts</a>
           <a class="dropdown-item" href="#">About ThinGifts</a>
         </div>
       </li>
     </ul>
-    <span class="right-nav-item">
+    <!-- <span class="right-nav-item">
       Login
-    </span>
+    </span> -->
     <span class="right-nav-item" (click)="openCartModal()">
       <mat-icon class="cart_icon">shopping_cart</mat-icon>
       <span id="lblCartCount" *ngIf="cartItemCount > 0">{{cartItemCount}}</span>
