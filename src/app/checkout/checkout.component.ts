@@ -10,7 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 export class CheckoutComponent implements OnInit {
   cartId: string;
   cart: any;
+  total: number;
   shoppingCartProducts: number[];
+  shoppingCartProductsCount: number;
 
   constructor(private ApiService: ApiService, private route: ActivatedRoute) { 
     this.cartId = this.route.snapshot.params.id;
@@ -22,6 +24,8 @@ export class CheckoutComponent implements OnInit {
         console.log(data)
         this.cart = data;
         this.shoppingCartProducts = data.shopping_cart_products_detail;
+        this.shoppingCartProductsCount = this.shoppingCartProducts.length;
+        this.total = data.total_price.price__sum;
       });
   }
 

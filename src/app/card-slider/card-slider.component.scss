@@ -135,6 +135,14 @@ input {
                     width: 50%;
                     border-right: 0.5px solid black;
                 }
+                .message-wrapper {
+                    width: 50%;
+                    .message {
+                        width: 90%;
+                        height: 100%;
+                        box-sizing: border-box;
+                    }
+                }
             }
         }
 

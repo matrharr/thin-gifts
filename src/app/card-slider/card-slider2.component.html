@@ -5,23 +5,38 @@
     <div class="message_container" fxHide.lt-sm="true">
         <div class="title">
             <h3>{{card ? card.product_detail.name : null}}</h3>
-            <mat-form-field class="tool__control text__font__control">
-                <mat-label>Font</mat-label>
-                <select matNativeControl (change)="onFontChange($event.target.value)">
-                    <option *ngFor="let opt of fontOptions" [value]="opt.value">
-                        {{opt.text}}
-                    </option>
-                </select>
-            </mat-form-field>
-            <mat-form-field class="tool__control text__color__control">
-                <mat-label>Color</mat-label>
-                <select matNativeControl (change)="onColorChange($event.target.value)">
-                    <option *ngFor="let opt of colorOptions" [value]="opt.value">
-                        {{opt.text}}
-                    </option>
-                </select>
-            </mat-form-field>
-
+            <div *ngIf="readOnly">
+                <p>by {{card.product_detail.creator_name}}</p>
+                <p>{{card.product_detail.description}}</p>
+                <p>${{card.product_detail.price}}</p>
+                <a href="#" (click)="deleteCartId(cartProductId)">Delete</a>
+            </div>
+            <div *ngIf="!readOnly">
+                <mat-form-field class="tool__control text__font__control">
+                    <mat-label>Font</mat-label>
+                    <select matNativeControl [disabled]="readOnly" (change)="onFontChange($event.target.value)" placeholder="REGULAR">
+                        <option 
+                            *ngFor="let opt of fontOptions" 
+                            [value]="opt.value"
+                            [selected]="font === opt.value"
+                            >
+                            {{opt.text}}
+                        </option>
+                    </select>
+                </mat-form-field>
+                <mat-form-field class="tool__control text__color__control">
+                    <mat-label>Color</mat-label>
+                    <select matNativeControl [disabled]="readOnly" (change)="onColorChange($event.target.value)">
+                        <option 
+                            *ngFor="let opt of colorOptions" 
+                            [value]="opt.value"
+                            [selected]="color === opt.value"
+                            >
+                            {{opt.text}}
+                        </option>
+                    </select>
+                </mat-form-field>
+            </div>
         </div>
         <div class="card-s">
             <div class="heading">
@@ -38,18 +53,21 @@
             <div class="inside-container" *ngIf="isCard()">
                 <div class="inside">
                     <div class="left-side"></div>
-                    <div class="message">
-                        <textarea 
-                            #message
-                            class="card__text"
-                            placeholder="Write your message here..."
-                        >Dear ,
-                                                        
-                        
-                        
-                        
-                        Best wishes,
-                        </textarea>
+                    <div class="message-wrapper">
+                        <div class="message">
+                            <textarea 
+                                #message
+                                class="card__text"
+                                placeholder="Write your message here..."
+                                [readonly]="readOnly"
+                            >Dear ,
+                                                            
+                            
+                            
+                            
+                            Best wishes,
+                            </textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -125,12 +143,22 @@
             <div class="footing">
                 <mat-icon class="foot" color="primary" (click)="moveLeft()">arrow_back</mat-icon>
                 <button 
+                    *ngIf="!readOnly"
                     mat-flat-button 
                     color="primary"
                     (click)="saveMessage()"
                     class="foot"
                 >
                     Save and Continue
+                </button>
+                <button 
+                    *ngIf="readOnly"
+                    mat-flat-button 
+                    color="primary"
+                    [routerLink]="['/add-message', this.cartProductId]"
+                    class="foot"
+                >
+                    Edit Card
                 </button>
                 <mat-icon class="foot" color="primary" (click)="moveRight()">arrow_forward</mat-icon>
             </div>

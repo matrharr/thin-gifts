@@ -16,6 +16,12 @@ export class CardSliderComponent implements OnInit {
   @ViewChild("message") set message1(message:ElementRef) {
     if(this.messageData){
       this.message.nativeElement.value = this.messageData;
+      if(this.color) {
+        this.onColorChange(this.color);
+      }
+      if(this.font) {
+        this.onFontChange(this.font);
+      }
     }
   }
   @ViewChild("simpleMessage") simpleMessage: ElementRef
@@ -68,6 +74,8 @@ export class CardSliderComponent implements OnInit {
         this.loading = false;
         if (data.message) {
           this.messageData = data.message;
+          this.color = data.color;
+          this.font = data.font;
         }
       })
   }
@@ -178,22 +186,32 @@ export class CardSliderComponent implements OnInit {
 
   onFontChange(value) {
     this.font = value;
-    if(value === "regular") {
+    if(value === "REGULAR") {
       this.message.nativeElement.style.fontFamily = "Times New Roman";
     }
-    else if(value === "cursive") {
+    else if(value === "CURSIVE") {
       this.message.nativeElement.style.fontFamily = "Cursive";
     }
   }
 
   onColorChange(value) {
     this.color = value;
-    if(value === "black") {
+    if(value === "BLACK") {
       this.message.nativeElement.style.color = "black";
     }
-    else if(value === "blue") {
+    else if(value === "LIGHT_BLUE") {
       this.message.nativeElement.style.color = "rgb(90,128,152)";
     }
+  }
+
+  deleteCartId(id) {
+    debugger
+    this.ApiService.deleteCartProduct(id)
+      .subscribe((data:any) => {
+        debugger;
+        this.router.navigate(['/checkout', data.shopping_cart])
+        console.log(data);
+      })
   }
 
 }

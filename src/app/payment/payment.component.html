@@ -1,4 +1,12 @@
 <form class="payment_form">
+  <mat-card class="summary">
+    <span>
+      Total ({{numProducts}} items + shipping): 
+      <span class="price">
+        ${{total}}
+      </span>
+    </span>
+  </mat-card>
   <mat-form-field class="email">
     <mat-label>Email</mat-label>
     <input 
@@ -8,12 +16,12 @@
       #email
       required
     >
-    <mat-hint>Email is required</mat-hint>
+    <mat-hint>Email is required to send receipt</mat-hint>
     <mat-error *ngIf="emailFormControl.hasError('email')">
       Please enter a valid email address
     </mat-error>
     <mat-error *ngIf="emailFormControl.hasError('required')">
-      Email is <strong>required</strong>
+      Email is <strong>required</strong> to send receipt
     </mat-error>
   </mat-form-field>
 </form>

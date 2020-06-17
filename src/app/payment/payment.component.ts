@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
@@ -28,6 +28,8 @@ export class PaymentComponent implements OnInit {
     Validators.email,
   ]);
   matcher = new MyErrorStateMatcher();
+  @Input() total: number;
+  @Input() numProducts: number;
   
   constructor(
     private ApiService: ApiService,
@@ -47,7 +49,7 @@ export class PaymentComponent implements OnInit {
                 description: '',
                 amount: {
                   currency_code: 'USD',
-                  value: 1
+                  value: this.total
                 }
               }
             ]

@@ -1,5 +1,5 @@
 <div class="checkout">
-  <mat-grid-list cols="21" rowHeight="80px">
+  <mat-grid-list cols="21" rowHeight="100px">
     <mat-grid-tile [colspan]="7"></mat-grid-tile>
     <mat-grid-tile [colspan]="7"><h1>Checkout</h1></mat-grid-tile>
     <mat-grid-tile [colspan]="7"></mat-grid-tile>
@@ -12,5 +12,9 @@
       ></app-card-slider>
     </mat-grid-tile>
   </mat-grid-list>
-  <app-payment class="payment"></app-payment>
+  <app-payment 
+    class="payment"
+    [total]="total"
+    [numProducts]="shoppingCartProductsCount"
+  ></app-payment>
 </div>
