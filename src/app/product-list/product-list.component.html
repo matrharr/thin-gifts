@@ -16,7 +16,11 @@
     
     <div fxLayout="row wrap" class="card__list__products">
       <div fxFlex="33%;" fxFlex.lt-sm="80%" *ngFor="let p of products">
-        <mat-card class="card_select" (mouseover)="p.hovered=true" >
+        <mat-card 
+          class="card_select" 
+          (mouseenter)="p.hovered=true" 
+          (mouseleave)="p.hovered=false" 
+        >
           <mat-card-content>
             <img class="card_select__image" src="{{p.image_url}}" />
             <h4>{{p.name}}</h4>

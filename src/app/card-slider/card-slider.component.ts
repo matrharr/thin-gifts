@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 export let states = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY' ];
 
@@ -48,6 +49,8 @@ export class CardSliderComponent implements OnInit {
     { value: 'LIGHT_BLUE', text: 'Light Blue' },
   ];
 
+  addressForm: FormGroup;
+  messageForm: FormGroup;
   current = 1;
   cardSliderColumns: number;
   card: any;
@@ -61,7 +64,8 @@ export class CardSliderComponent implements OnInit {
 
   constructor(
     private ApiService: ApiService, 
-    private router: Router
+    private router: Router,
+    public fb: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -72,12 +76,40 @@ export class CardSliderComponent implements OnInit {
         console.log(data)
         this.card = data;
         this.loading = false;
+        this.buildForm();
         if (data.message) {
           this.messageData = data.message;
           this.color = data.color;
           this.font = data.font;
         }
       })
+
+  }
+
+  buildForm() {
+    const recipient = this.card.recipient_address;
+    const ret = this.card.return_address;
+    this.addressForm = this.fb.group({
+      returnName: ret.name || [''],
+      returnAddress1: ret.street || [''],
+      returnAddress2: ret.street2 || [''],
+      returnCity: ret.city || [''],
+      returnState: ret.state || [''],
+      returnZip: ret.code || [''],
+      recipientName: recipient.name || [''],
+      recipientAddress1: recipient.street || [''],
+      recipientAddress2: recipient.street2 ||[''],
+      recipientCity: recipient.city || [''],
+      recipientState: recipient.state || [''],
+      recipientZip: recipient.code || ['']
+    });
+    this.messageForm = this.fb.group({
+      text: this.messageData || ['Dear , \n\n\n\n    Best,']
+    })
+    if (this.readOnly) {
+      this.addressForm.disable();
+      this.messageForm.disable();
+    }
   }
 
   @HostListener('window:keyup', ['$event'])
@@ -132,26 +164,28 @@ export class CardSliderComponent implements OnInit {
 
   getReturnAddress() {
     return {
-      name: 'Matt Harris',
-      street: '509 e 85th street',
-      city: 'New York',
-      state: 'NY',
-      code: '10028'
+      name: this.addressForm.value.returnName,
+      street: this.addressForm.value.returnAddress1,
+      street2: this.addressForm.value.returnAddress2,
+      city: this.addressForm.value.returnCity,
+      state: this.addressForm.value.returnState,
+      code: this.addressForm.value.returnZip
     }
   }
 
   getRecipientAddress() {
     return {
-      name: 'Jen Fang',
-      street: '360 state street',
-      city: 'New Haven',
-      state: 'CT',
-      code: '06510'
+      name: this.addressForm.value.recipientName,
+      street: this.addressForm.value.recipientAddress1,
+      street2: this.addressForm.value.recipientAddress2,
+      city: this.addressForm.value.recipientCity,
+      state: this.addressForm.value.recipientState,
+      code: this.addressForm.value.recipientZip
     }
   }
 
   saveMessage(e) {
-    const message = this.message.nativeElement.value;
+    const message = this.messageForm.value.text;
     const returnAddress = this.getReturnAddress();
     const recipientAddress = this.getRecipientAddress();
     const reqData = {
@@ -205,10 +239,8 @@ export class CardSliderComponent implements OnInit {
   }
 
   deleteCartId(id) {
-    debugger
     this.ApiService.deleteCartProduct(id)
       .subscribe((data:any) => {
-        debugger;
         this.router.navigate(['/checkout', data.shopping_cart])
         console.log(data);
       })

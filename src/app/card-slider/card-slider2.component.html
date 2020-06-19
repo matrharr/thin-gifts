@@ -14,12 +14,17 @@
             <div *ngIf="!readOnly">
                 <mat-form-field class="tool__control text__font__control">
                     <mat-label>Font</mat-label>
-                    <select matNativeControl [disabled]="readOnly" (change)="onFontChange($event.target.value)" placeholder="REGULAR">
-                        <option 
-                            *ngFor="let opt of fontOptions" 
+                    <select 
+                        matNativeControl 
+                        [disabled]="readOnly" 
+                        (change)="onFontChange($event.target.value)" 
+                        placeholder="REGULAR"
+                    >
+                        <option
+                            *ngFor="let opt of fontOptions"
                             [value]="opt.value"
                             [selected]="font === opt.value"
-                            >
+                        >
                             {{opt.text}}
                         </option>
                     </select>
@@ -54,20 +59,15 @@
                 <div class="inside">
                     <div class="left-side"></div>
                     <div class="message-wrapper">
-                        <div class="message">
+                        <form [formGroup]="messageForm" class="message">
                             <textarea 
                                 #message
                                 class="card__text"
-                                placeholder="Write your message here..."
                                 [readonly]="readOnly"
-                            >Dear ,
-                                                            
-                            
-                            
-                            
-                            Best wishes,
-                            </textarea>
-                        </div>
+                                placeholder=""
+                                formControlName="text"
+                            ></textarea>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -77,68 +77,72 @@
                 </div>
             </div>
             <div class="address-container" *ngIf="isAddressing()">
-                <div class="address">
-                    <h3>Return Address</h3>
-                    <div>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Name</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Address 1</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Address 2</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                        <mat-form-field appearance="standard">
-                            <mat-label>City</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                        <mat-form-field appearance="standard">
-                            <mat-label>State</mat-label>
-                            <mat-select>
-                            <mat-option *ngFor="let s of states" value="{{s}}">{{s}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Zip Code</mat-label>
-                            <input matInput>
-                        </mat-form-field>
+                <form [formGroup]="addressForm">
+                    <div class="address">
+                        <h3>Return Address</h3>
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Name</mat-label>
+                                <input required matInput formControlName="returnName">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Address 1</mat-label>
+                                <input required matInput formControlName="returnAddress1">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Address 2</mat-label>
+                                <input matInput formControlName="returnAddress2">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>City</mat-label>
+                                <input required matInput formControlName="returnCity">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>State</mat-label>
+                                <mat-select required formControlName="returnState">
+                                    <mat-option *ngFor="let s of states" value="{{s}}">
+                                        {{s}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Zip Code</mat-label>
+                                <input required matInput formControlName="returnZip">
+                            </mat-form-field>
+                        </div>
                     </div>
-                </div>
-                <div class="address">
-                    <h3>Recipient Address</h3>
-                    <div>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Name</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Address 1</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Address 2</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                        <mat-form-field appearance="standard">
-                            <mat-label>City</mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                        <mat-form-field appearance="standard">
-                            <mat-label>State</mat-label>
-                            <mat-select>
-                            <mat-option *ngFor="let s of states" value="{{s}}">{{s}}</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <mat-form-field appearance="standard">
-                            <mat-label>Zip Code</mat-label>
-                            <input matInput>
-                        </mat-form-field>
+                    <div class="address">
+                        <h3>Recipient Address</h3>
+                        <div>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Name</mat-label>
+                                <input required matInput formControlName="recipientName">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Address 1</mat-label>
+                                <input required matInput formControlName="recipientAddress1">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Address 2</mat-label>
+                                <input matInput formControlName="recipientAddress2">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>City</mat-label>
+                                <input required matInput formControlName="recipientCity">
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>State</mat-label>
+                                <mat-select required formControlName="recipientState">
+                                <mat-option *ngFor="let s of states" value="{{s}}">{{s}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field appearance="standard">
+                                <mat-label>Zip Code</mat-label>
+                                <input required matInput formControlName="recipientZip">
+                            </mat-form-field>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="footing">
                 <mat-icon class="foot" color="primary" (click)="moveLeft()">arrow_back</mat-icon>
