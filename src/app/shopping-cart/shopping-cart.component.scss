@@ -2,7 +2,6 @@
     padding-top: 60px;
     // text-align: center;
     &__summary {
-        text-align: center;
         background-color: rgb(236, 235, 229);
         &__price {
             color: rgb(190, 61, 61);
@@ -46,7 +45,11 @@
             margin-left: 30px;
             &__price {
                 color: rgb(190, 61, 61);
-                font-size: 23px;
+                font-size: 18px;
+                &__final {
+                    color: rgb(190, 61, 61);
+                    font-size: 23px;
+                }
             }
             &__checkout_btn {
                 background-color: rgb(245, 131, 38);

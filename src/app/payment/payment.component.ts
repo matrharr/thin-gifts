@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
@@ -18,7 +18,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss']
 })
-export class PaymentComponent implements OnInit {
+export class PaymentComponent implements OnInit, OnChanges {
   @ViewChild('paypal', { static: true }) paypalElement: ElementRef;
   @ViewChild('email', { static: true }) emailElement: ElementRef;
   paidFor = false;
@@ -28,8 +28,10 @@ export class PaymentComponent implements OnInit {
     Validators.email,
   ]);
   matcher = new MyErrorStateMatcher();
-  @Input() total: number;
+  @Input() itemTotal: number;
   @Input() numProducts: number;
+  stampCost: number;
+  total: number;
   
   constructor(
     private ApiService: ApiService,
@@ -40,6 +42,8 @@ export class PaymentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.stampCost = this.numProducts * 0.55;
+    this.total = this.stampCost + this.itemTotal;
     paypal
       .Buttons({
         createOrder: (data, actions) => {
@@ -76,6 +80,11 @@ export class PaymentComponent implements OnInit {
         }
       })
       .render(this.paypalElement.nativeElement);
+  }
+
+  ngOnChanges(change) {
+    this.stampCost = this.numProducts * 0.55;
+    this.total = this.stampCost + this.itemTotal;
   }
 
 }

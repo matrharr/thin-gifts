@@ -1,11 +1,25 @@
 <form class="payment_form">
   <mat-card class="summary">
-    <span>
-      Total ({{numProducts}} items + shipping): 
+    <h4>Checkout Summary</h4>
+    <div>
+      {{numProducts}} items: 
+      <span class="">
+        ${{itemTotal}}
+      </span>
+    </div>
+    <div>
+      {{numProducts}} stamps: 
+      <span class="">
+        ${{stampCost | number: '1.2-2' }}
+      </span>
+    </div>
+    <hr>
+    <div>
+      Total: 
       <span class="price">
         ${{total}}
       </span>
-    </span>
+    </div>
   </mat-card>
   <mat-form-field class="email">
     <mat-label>Email</mat-label>

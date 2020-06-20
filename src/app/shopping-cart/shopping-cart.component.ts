@@ -12,6 +12,8 @@ export class ShoppingCartComponent implements OnInit {
   isEmpty: boolean;
   cartId: string;
   loading: boolean;
+  stampCost: number;
+  total: number;
 
   constructor(
     private ApiService: ApiService,
@@ -31,7 +33,15 @@ export class ShoppingCartComponent implements OnInit {
         if (this.cart.cart_products.length == 0) {
           this.isEmpty = true;
         }
+        this.calcTotal();
       });
+  }
+
+  calcTotal() {
+    if (!this.isEmpty) {
+      this.stampCost = this.cart.cart_products.length * 0.55;
+      this.total = this.stampCost + this.cart.total_price.price__sum;
+    }
   }
 
   deleteCartItem(item) {
