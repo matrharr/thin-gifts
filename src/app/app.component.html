@@ -33,6 +33,7 @@
   </div>
 </nav>
 
+<app-spinner></app-spinner>
 <router-outlet (activate)="onRouteChange()"></router-outlet>
 
 <footer>
@@ -71,9 +72,9 @@
         <p>Get updates on our latest promos more!</p>
         <mat-form-field class="example-full-width">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Email" value="">
+          <input matInput placeholder="Email" value="" [(ngModel)]="email">
         </mat-form-field>
-        <button mat-stroked-button color="primary">Submit</button>
+        <button mat-stroked-button color="primary" (click)="submitEmail()">Submit</button>
       </div>
     </div>
     <div fxFlex="30">

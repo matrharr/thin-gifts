@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../services/api/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 const productTypeMap = {

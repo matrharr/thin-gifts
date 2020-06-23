@@ -29,9 +29,13 @@ import { CardSliderComponent } from './card-slider/card-slider.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { ProductListComponent } from './product-list/product-list.component';
 import { PaymentComponent } from './payment/payment.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ApiInterceptor } from './services/api/api.interceptor';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerService } from './services/spinner/spinner.service';
+import { ApiService } from './services/api/api.service';
 
 
 
@@ -48,7 +52,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CardSliderComponent,
     ProductListComponent,
     PaymentComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    SpinnerComponent
   ],
   imports: [
     FormsModule,
@@ -72,7 +77,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatProgressSpinnerModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true
+    },
+    SpinnerService,
+    ApiService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ShoppingCartComponent]
 })

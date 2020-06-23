@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Input, OnChanges } from '@ang
 import { ActivatedRoute, Router } from '@angular/router';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../services/api/api.service';
 
 declare var paypal;
 
@@ -42,15 +42,13 @@ export class PaymentComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.stampCost = this.numProducts * 0.55;
-    this.total = this.stampCost + this.itemTotal;
     paypal
       .Buttons({
         createOrder: (data, actions) => {
           return actions.order.create({
             purchase_units: [
               {
-                description: '',
+                description: `cartID ${this.cartId}, email ${this.emailElement.nativeElement.value}`,
                 amount: {
                   currency_code: 'USD',
                   value: this.total

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../services/api/api.service';
 import { ActivatedRoute } from '@angular/router';
 import {formatDate} from '@angular/common';
 

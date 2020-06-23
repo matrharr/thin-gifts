@@ -111,6 +111,16 @@ export class ApiService {
     );
   }
 
+  submitEmail(email) {
+    return this.http.post(
+      `http://127.0.0.1:8000/subscribe_email/`,
+      {
+        email: email
+      },
+      this.requestOptions
+    );
+  }
+
   formatTagQueryParams(key, values) {
     let queryParams = '';
     values.forEach((val) => {

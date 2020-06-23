@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ApiService } from './services/api.service';
+import { ApiService } from './services/api/api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { Router } from '@angular/router';
@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   cartItemCount: number;
   cartId: number;
+  email: string;
 
   constructor(
     iconRegistry: MatIconRegistry, 
@@ -56,6 +57,13 @@ export class AppComponent {
     if (this.cartId) {
       this.router.navigate(['/shopping-cart', this.cartId])
     }
+  }
+
+  submitEmail() {
+    this.ApiService.submitEmail(this.email)
+      .subscribe((data:any) => {
+        alert("Thanks for signing up! We'll keep you up to date on the latest news from Thin Gifts.")
+      })
   }
 
 }

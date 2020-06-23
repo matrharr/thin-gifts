@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener, ViewChild, ElementRef } from '@angular/core';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../services/api/api.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
