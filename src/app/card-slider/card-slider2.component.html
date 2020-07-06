@@ -178,79 +178,90 @@
         fxLayoutGap="80px" 
         fxLayoutAlign="flex-start"
         >
-        <div class="card-cover">
-            <img src="{{card.product_detail.image_url}}" />
-        </div>
-        <div class="add_message_simple__message">
-            <h3>Message</h3>
-            <mat-form-field appearance="fill" style="width: 300px;">
-            <mat-label>Add your message</mat-label>
-            <textarea #simpleMessage matInput></textarea>
-            </mat-form-field>
-        </div>
-        <div class="add_message_simple__addr">
-            <h3>Return Address</h3>
-            <div>
-            <mat-form-field appearance="standard">
-                <mat-label>Name</mat-label>
-                <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="standard">
-                <mat-label>Address 1</mat-label>
-                <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="standard">
-                <mat-label>Address 2</mat-label>
-                <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="standard">
-                <mat-label>City</mat-label>
-                <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="standard">
-                <mat-label>State</mat-label>
-                <mat-select>
-                <mat-option *ngFor="let s of states" value="{{s}}">{{s}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field appearance="standard">
-                <mat-label>Zip Code</mat-label>
-                <input matInput>
-            </mat-form-field>
+            <div class="card-cover">
+                <img src="{{card.product_detail.image_url}}" />
+            </div>
+            <div class="add_message_simple__message">
+                <h3>Message</h3>
+                <mat-form-field appearance="fill" style="width: 300px;">
+                    <mat-label>Add your message</mat-label>
+                    <textarea #simpleMessage matInput></textarea>
+                </mat-form-field>
+            </div>
+            <div class="add_message_simple__addr">
+                <form [formGroup]="addressForm">
+                    <h3>Return Address</h3>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Name</mat-label>
+                            <input required matInput formControlName="returnName">
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Address 1</mat-label>
+                            <input required matInput formControlName="returnAddress1">
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Address 2</mat-label>
+                            <input matInput formControlName="returnAddress2">
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>City</mat-label>
+                            <input required matInput formControlName="returnCity">
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>State</mat-label>
+                            <mat-select required formControlName="returnState">
+                                <mat-option *ngFor="let s of states" value="{{s}}">
+                                    {{s}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Zip Code</mat-label>
+                            <input required matInput formControlName="returnZip">
+                        </mat-form-field>
+                    </div>
+                    <h3>Recipient Address</h3>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Name</mat-label>
+                            <input required matInput formControlName="recipientName">
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Address 1</mat-label>
+                            <input required matInput formControlName="recipientAddress1">
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Address 2</mat-label>
+                            <input matInput formControlName="recipientAddress2">
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>City</mat-label>
+                            <input required matInput formControlName="recipientCity">
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>State</mat-label>
+                            <mat-select required formControlName="recipientState">
+                            <mat-option *ngFor="let s of states" value="{{s}}">{{s}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Zip Code</mat-label>
+                            <input required matInput formControlName="recipientZip">
+                        </mat-form-field>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="add_message_simple__addr">
-            <h3>Recipient Address</h3>
-            <div>
-            <mat-form-field appearance="standard">
-                <mat-label>Name</mat-label>
-                <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="standard">
-                <mat-label>Address 1</mat-label>
-                <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="standard">
-                <mat-label>Address 2</mat-label>
-                <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="standard">
-                <mat-label>City</mat-label>
-                <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="standard">
-                <mat-label>State</mat-label>
-                <mat-select>
-                <mat-option *ngFor="let s of states" value="{{s}}">{{s}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field appearance="standard">
-                <mat-label>Zip Code</mat-label>
-                <input matInput>
-            </mat-form-field>
-            </div>
-        </div>
-        </div>
-        <button mat-flat-button (click)="saveSimpleMessage()">Add to cart</button>
+        <button mat-flat-button *ngIf="!readOnly" (click)="saveSimpleMessage()">Add to cart</button>
+        <button 
+            *ngIf="readOnly"
+            mat-flat-button 
+            color="primary"
+            [routerLink]="['/add-message', this.cartProductId]"
+            class="foot"
+        >
+            Edit Card
+        </button>
     </div>
 </div>

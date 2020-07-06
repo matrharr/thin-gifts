@@ -11,6 +11,8 @@ import {formatDate} from '@angular/common';
 export class ConfirmationComponent implements OnInit {
   orderId: string;
   order: any;
+  stampCost: number;
+  total: number;
   today = formatDate(new Date(), 'yyyy/MM/dd', 'en');
   constructor(private ApiService: ApiService, private route: ActivatedRoute) { 
     this.orderId = this.route.snapshot.params.id;
@@ -21,7 +23,13 @@ export class ConfirmationComponent implements OnInit {
       .subscribe((data: any) => {
         console.log(data)
         this.order = data;
+        this.calcTotal();
       });
+  }
+
+  calcTotal() {
+    this.stampCost = this.order.order_products.length * 0.55;
+    this.total = this.stampCost + this.order.total_price.price__sum;
   }
 
 }

@@ -53,8 +53,8 @@
     fxLayoutGap="80px" 
     fxLayoutAlign="flex-start"
   >
-    <div *ngFor="let c of cards">
-      <img class="card-cover" src="{{c.image_url}}" />
+    <div *ngFor="let c of cards" class="card-cover">
+      <img src="{{c.image_url}}" />
     </div>
     <div class="instruction__modern_gift">
       <h3>

@@ -40,7 +40,7 @@ export class ShoppingCartComponent implements OnInit {
   calcTotal() {
     if (!this.isEmpty) {
       this.stampCost = this.cart.cart_products.length * 0.55;
-      this.total = this.stampCost + this.cart.total_price.price__sum;
+      this.total = (this.stampCost + this.cart.total_price.price__sum).toFixed(2);
     }
   }
 

@@ -15,7 +15,7 @@ export let states = [ 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC'
 export class CardSliderComponent implements OnInit {
   @ViewChild("message", {static: false}) message: ElementRef
   @ViewChild("message") set message1(message:ElementRef) {
-    if(this.messageData){
+    if(this.messageData && this.message){
       this.message.nativeElement.value = this.messageData;
       if(this.color) {
         this.onColorChange(this.color);
@@ -86,22 +86,43 @@ export class CardSliderComponent implements OnInit {
 
   }
 
+  getAddressInfoFromRes(data) {
+    if(data) {
+      return {
+        name: data.name,
+        street: data.street,
+        street2: data.street2,
+        city: data.city,
+        state: data.state,
+        code: data.code
+      }
+    }
+    return {
+      name: '',
+      street: '',
+      street2: '',
+      city: '',
+      state: '',
+      code: ''
+    }
+  }
+
   buildForm() {
-    const recipient = this.card.recipient_address;
-    const ret = this.card.return_address;
+    const recipient = this.getAddressInfoFromRes(this.card.recipient_address);
+    const ret = this.getAddressInfoFromRes(this.card.return_address);
     this.addressForm = this.fb.group({
-      returnName: ret.name || [''],
-      returnAddress1: ret.street || [''],
-      returnAddress2: ret.street2 || [''],
-      returnCity: ret.city || [''],
-      returnState: ret.state || [''],
-      returnZip: ret.code || [''],
-      recipientName: recipient.name || [''],
-      recipientAddress1: recipient.street || [''],
-      recipientAddress2: recipient.street2 ||[''],
-      recipientCity: recipient.city || [''],
-      recipientState: recipient.state || [''],
-      recipientZip: recipient.code || ['']
+      returnName: ret.name,
+      returnAddress1: ret.street,
+      returnAddress2: ret.street2,
+      returnCity: ret.city,
+      returnState: ret.state,
+      returnZip: ret.code,
+      recipientName: recipient.name,
+      recipientAddress1: recipient.street,
+      recipientAddress2: recipient.street2,
+      recipientCity: recipient.city,
+      recipientState: recipient.state,
+      recipientZip: recipient.code 
     });
     this.messageForm = this.fb.group({
       text: this.messageData || ['Dear , \n\n\n\n    Best,']
@@ -112,17 +133,17 @@ export class CardSliderComponent implements OnInit {
     }
   }
 
-  @HostListener('window:keyup', ['$event'])
-  keyEvent(event: KeyboardEvent) {
+  // @HostListener('window:keyup', ['$event'])
+  // keyEvent(event: KeyboardEvent) {
 
-    if (event.keyCode === 39) {
-      this.moveRight();
-    }
+  //   if (event.keyCode === 39) {
+  //     this.moveRight();
+  //   }
 
-    if (event.keyCode === 37) {
-      this.moveLeft();
-    }
-  }
+  //   if (event.keyCode === 37) {
+  //     this.moveLeft();
+  //   }
+  // }
 
   moveLeft() {
     if (this.current > 0) {
@@ -208,6 +229,8 @@ export class CardSliderComponent implements OnInit {
     const recipientAddress = this.getRecipientAddress();
     const reqData = {
       message: message,
+      color: "BLACK",
+      font: "CURSIVE",
       return_address: returnAddress,
       recipient_address: recipientAddress
     }
