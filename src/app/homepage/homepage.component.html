@@ -4,14 +4,9 @@
   <a class="shop" [routerLink]="['/card-list']">	Shop Now</a>
 </div>
 
-<div class="instructional">
-  <div 
-    fxLayout="row wrap" 
-    fxLayout.lt-sm="column" 
-    fxLayoutGap="45px" 
-    fxLayoutAlign="flex-start"
-  >
-    <div fxFlex="35" class="instruction__modern_gift">
+<div>
+  <div class="instructional">
+    <div class="instruction__modern_gift_1">
       <h3>
         Built for 
         <span class="bold__text">MODERN</span> 
@@ -19,21 +14,21 @@
       </h3>
       <button mat-flat-button [routerLink]="['/card-list']">SHOP NOW</button>
     </div>
-    <div fxFlex="17" class="instruction__step">
+    <div class="instruction__step">
       <span class="circle">1</span>
       <mat-icon class="svg__icon" svgIcon="card" [inline]="true"></mat-icon>
       <div class="instruction__text">
         Pick a card
       </div>
     </div>
-    <div fxFlex="17" class="instruction__step">
+    <div class="instruction__step">
       <span class="circle">2</span>
       <mat-icon class="svg__icon" svgIcon="keyboard" [inline]="true"></mat-icon>
       <div class="instruction__text">
         Add a message
       </div>
     </div>
-    <div fxFlex="17" class="instruction__step">
+    <div class="instruction__step">
       <span class="circle">3</span>
       <mat-icon class="svg__icon" svgIcon="gift" [inline]="true"></mat-icon>
       <div class="instruction__text">
@@ -41,30 +36,24 @@
       </div>
     </div>
   </div>
-    <div class="addt_text">
-      <h2>We'll take care of the rest!</h2>
-    </div>
+  <div class="addt_text">
+    <h2></h2>
+    <h2>We'll take care of the rest!</h2>
+  </div>
 </div>
 
 <div class="favorites">
-  <div 
-    fxLayout="row wrap" 
-    fxLayout.lt-sm="column" 
-    fxLayoutGap="80px" 
-    fxLayoutAlign="flex-start"
-  >
-    <div *ngFor="let c of cards" class="card-cover">
-      <img src="{{c.image_url}}" />
-    </div>
-    <div class="instruction__modern_gift">
-      <h3>
-        Discover 
-        <span class="bold__text">OUR</span> 
-        <span class="bold__text">FAVORITES</span>
-      </h3>
-      <span>
-        <a [routerLink]="['/card-list']">See more >></a>
-      </span>
-    </div>
+  <div *ngFor="let c of cards" class="card-cover">
+    <img src="{{c.image_url}}" />
+  </div>
+  <div class="instruction__modern_gift_2">
+    <h3>
+      Discover 
+      <span class="bold__text">OUR</span> 
+      <span class="bold__text">FAVORITES</span>
+    </h3>
+    <span>
+      <a [routerLink]="['/card-list']">See more >></a>
+    </span>
   </div>
 </div>

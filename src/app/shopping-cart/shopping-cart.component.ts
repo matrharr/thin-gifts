@@ -52,9 +52,9 @@ export class ShoppingCartComponent implements OnInit {
       })
   }
 
-  editCartItem(item) {
-    this.router.navigate(['/add-message', item.id]);
-  }
+  // editCartItem(item) {
+  //   this.router.navigate(['/add-message', item.id]);
+  // }
 
   goToCheckout() {
     this.router.navigate(['/checkout', this.cart.id]);

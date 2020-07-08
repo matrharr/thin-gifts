@@ -8,6 +8,7 @@
     <div fxLayout="column wrap">
       <div fxFlex="80%;" fxFlex.lt-sm="80%">
         <mat-card class="shopping_cart__summary">
+          <h3>Summary</h3>
           <div>
             {{cart.cart_products.length}} items: 
             <span class="shopping_cart__summary__price">
@@ -69,7 +70,7 @@
           <div class="p-title">
             <p><a href="">{{i.product_detail.name}}</a> by {{i.product_detail.creator_name}}</p>
             <p>{{i.product_detail.description}}</p>
-            <a href="" (click)="editCartItem(i)">Edit message</a> |
+            <a href="" [routerLink]="['/add-message', i.id]">Edit message</a> |
             <a href="" (click)="deleteCartItem(i)">Delete</a>
           </div>
           <!-- <div class="p-btns">
