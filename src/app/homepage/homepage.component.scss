@@ -142,6 +142,9 @@
 		// display: inline;
 		transform: scale(0.6);
 	}
+	.gift-card {
+		width: 80%;
+	}
 }
 
 .instruction__text {
@@ -226,6 +229,9 @@ a {
 		.svg__icon {
 			transform: scale(0.8);
 		}
+		.gift-card {
+			width: 90%;
+		}
 	}
 
 	.instructional {
@@ -257,4 +263,5 @@ a {
 			padding-bottom: 20px;
 		}
 	}
+
 }
