@@ -6,8 +6,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ApiService {
   headers = new HttpHeaders({
-    'Accept': 'application/json'
+    'Accept': 'application/json',
   });
+
+  baseURL = '/api';
 
   requestOptions: any
 
@@ -32,14 +34,14 @@ export class ApiService {
       qp = this.formatQP(qpObj);
     }
     return this.http.get(
-      `http://127.0.0.1:8000/products/get_products/?type=${type}&${qp}`, 
+      `${this.baseURL}/products/get_products/?type=${type}&${qp}`, 
       this.requestOptions
     );
   }
 
   addToCart(values) {
     return this.http.post(
-      `http://127.0.0.1:8000/shopping_cart_products/create_or_update_cart/`,
+      `${this.baseURL}/shopping_cart_products/create_or_update_cart/`,
       values,
       this.requestOptions
     )
@@ -47,21 +49,21 @@ export class ApiService {
 
   getCart(cartId) {
     return this.http.get(
-      `http://127.0.0.1:8000/shopping_cart/${cartId}/`,
+      `${this.baseURL}/shopping_cart/${cartId}/`,
       this.requestOptions
     );
   }
 
   getCartQuantity() {
     return this.http.get(
-      `http://127.0.0.1:8000/shopping_cart/get_cart_quantity/`,
+      `${this.baseURL}/shopping_cart/get_cart_quantity/`,
       this.requestOptions
     );
   }
 
   updateCartProduct(values, cartProductId) {
     return this.http.patch(
-      `http://127.0.0.1:8000/shopping_cart_products/${cartProductId}/`,
+      `${this.baseURL}/shopping_cart_products/${cartProductId}/`,
       values,
       this.requestOptions
     )
@@ -69,7 +71,7 @@ export class ApiService {
 
   getCartProduct(cartProductId) {
     return this.http.get(
-      `http://127.0.0.1:8000/shopping_cart_products/${cartProductId}/`, 
+      `${this.baseURL}/shopping_cart_products/${cartProductId}/`, 
       this.requestOptions
     );
   }
@@ -80,14 +82,14 @@ export class ApiService {
       queryParams = this.formatTagQueryParams('tags', tagIds);
     }
     return this.http.get(
-      `http://127.0.0.1:8000/products/?type=${productType}&${queryParams}`, 
+      `${this.baseURL}/products/?type=${productType}&${queryParams}`, 
       this.requestOptions
     );
   }
 
   captureOrder(orderId, shoppingCartId, email) {
     return this.http.post(
-      `http://127.0.0.1:8000/execute_payment/`,
+      `${this.baseURL}/execute_payment/`,
       {
         order_id: orderId,
         shopping_cart_id: shoppingCartId,
@@ -99,21 +101,21 @@ export class ApiService {
 
   getOrder(orderId) {
     return this.http.get(
-      `http://127.0.0.1:8000/orders/${orderId}/`, 
+      `${this.baseURL}/orders/${orderId}/`, 
       this.requestOptions
     );
   }
 
   deleteCartProduct(cartProductId) {
     return this.http.delete(
-      `http://127.0.0.1:8000/shopping_cart_products/${cartProductId}/`, 
+      `${this.baseURL}/shopping_cart_products/${cartProductId}/`, 
       this.requestOptions
     );
   }
 
   submitEmail(email) {
     return this.http.post(
-      `http://127.0.0.1:8000/subscribe_email/`,
+      `${this.baseURL}/subscribe_email/`,
       {
         email: email
       },

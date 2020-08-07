@@ -33,7 +33,7 @@ export class AppComponent {
     );
     iconRegistry.addSvgIcon(
       'keyboard',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/img/keyboard.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('http://thin-gifts-cards.s3.amazonaws.com/keyboard.svg')
     );
     iconRegistry.addSvgIcon(
       'facebook',

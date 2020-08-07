@@ -142,8 +142,10 @@
 		// display: inline;
 		transform: scale(0.6);
 	}
-	.gift-card {
-		width: 80%;
+
+	img {
+		max-width:100%;
+		padding: 8px;
 	}
 }
 
@@ -226,11 +228,9 @@ a {
 
 	.instruction__step {
 		flex: 1;
-		.svg__icon {
-			transform: scale(0.8);
-		}
-		.gift-card {
-			width: 90%;
+		img {
+			max-width:100%;
+			padding: 8px;
 		}
 	}
 
