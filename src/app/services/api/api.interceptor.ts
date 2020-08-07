@@ -30,7 +30,7 @@ export class ApiInterceptor implements HttpInterceptor {
   }
 
   update_nonce() {
-    let scriptTag = document.getElementById('paypal');
+    let scriptTag = document.getElementById('payment');
     scriptTag['data-csp-nonce'] = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   }
 }
