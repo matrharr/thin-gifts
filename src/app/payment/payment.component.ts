@@ -73,7 +73,6 @@ export class PaymentComponent implements OnInit, OnChanges {
         },
         onError: err => {
           // display to user
-          debugger;
           console.log(err)
         }
       })
